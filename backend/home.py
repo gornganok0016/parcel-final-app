@@ -17,8 +17,6 @@ firebaseConfig = {
     'measurementId': "G-HL46XMRBKM"
 }
 
-firebase = pyrebase.initialize_app(config)
-auth = firebase.auth()
 
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
 UPLOAD_FOLDER = 'uploads'
