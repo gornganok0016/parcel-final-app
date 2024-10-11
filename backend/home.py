@@ -134,19 +134,19 @@ def main():
     st.sidebar.title("เมนู")
 # ตรวจสอบสถานะการล็อกอิน
     global current_page
-
-    
-       
-    if st.session_state.is_logged_in:
-        # ถ้าผู้ใช้ล็อกอินแล้ว
-        page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
-        while True:
+    while True:
         if current_page == "login":
             current_page = login()
         elif current_page == "sign_up":
             current_page = sign_up()
         elif current_page == "home":
             current_page = home()
+    
+       
+    # if st.session_state.is_logged_in:
+    #     # ถ้าผู้ใช้ล็อกอินแล้ว
+    #     page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+       
     #     if page == "หน้าแรก":
     #         home()
     #     elif page == "หน้าอัปโหลด":
