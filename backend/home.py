@@ -36,10 +36,6 @@ auth = firebase.auth()
 current_page = "login"
 
 # ฟังก์ชันสำหรับหน้า Login
-# ตัวแปรสำหรับติดตามหน้า
-current_page = "login"
-
-# ฟังก์ชันสำหรับหน้า Login
 def login():
     st.title("Login")
     
@@ -51,14 +47,15 @@ def login():
             # ทำการล็อกอินผู้ใช้
             auth.sign_in_with_email_and_password(email, password)
             st.success("Login สำเร็จ!")
-            return "home"  # เปลี่ยนหน้าไปยังหน้าแรก
-            st.rerun()
+            st.session_state.current_page = "home"  # เปลี่ยนหน้าไปยังหน้าแรก
+            st.experimental_rerun()  # รีเฟรชหน้าเมื่อมีการล็อกอินสำเร็จเท่านั้น
         except Exception as e:
             st.error(f"Login ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
 
     # ปุ่มไปยังหน้าลงทะเบียน
     if st.button("Sign Up"):
         st.session_state.current_page = "sign_up"  # เปลี่ยนหน้าไปยังหน้าลงทะเบียน
+        st.experimental_rerun()  # รีเฟรชหน้าเมื่อมีการเปลี่ยนไปยังหน้าลงทะเบียน
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
@@ -73,9 +70,10 @@ def sign_up():
             auth.create_user_with_email_and_password(email, password)
             st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
             st.session_state.current_page = "login"  # เปลี่ยนหน้าไปยังหน้า Login
-            st.rerun()
+            st.experimental_rerun()  # รีเฟรชหน้าเมื่อ Sign Up สำเร็จ
         except Exception as e:
             st.error(f"Sign Up ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
+
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
     st.title("หน้าแรก")
@@ -136,22 +134,15 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    if 'current_page' not in st.session_state:
-        st.session_state.current_page = "login"  # กำหนดหน้าเริ่มต้นเป็น Login
-    if 'is_logged_in' not in st.session_state:
-        st.session_state.is_logged_in = False  # กำหนดสถานะล็อกอินเริ่มต้น
-
-    # แสดงหน้า ตามสถานะใน session_state
+    if "current_page" not in st.session_state:
+        st.session_state.current_page = "login"  # เริ่มต้นที่หน้า Login
+    
+    # แสดงหน้าเฉพาะเมื่อจำเป็น
     if st.session_state.current_page == "login":
         login()
     elif st.session_state.current_page == "sign_up":
         sign_up()
-    elif st.session_state.current_page == "home" and st.session_state.is_logged_in:
-        st.title("หน้าแรก")
-        st.write("ยินดีต้อนรับสู่แอปพลิเคชันของเรา!")
-        if st.button("Log out"):
-            st.session_state.is_logged_in = False  # ออกจากระบบ
-            st.session_state.current_page = "login"  # กลับไปที่หน้า Login
-
+    elif st.session_state.current_page == "home":
+        home()
 if __name__ == "__main__":
     main()
