@@ -39,9 +39,14 @@ def login():
         try:
             # ทำการล็อกอินผู้ใช้
             user = auth.sign_in_with_email_and_password(email, password)
+            st.session_state.is_logged_in = True  # บันทึกสถานะล็อกอิน
             st.success("Login สำเร็จ!")
+            st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
         except:
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+            if st.button("Sign Up"):
+                st.session_state.show_sign_up = True  # เปลี่ยนสถานะไปที่ Sign Up
+                st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
@@ -55,6 +60,8 @@ def sign_up():
             # ทำการสร้างบัญชีผู้ใช้
             auth.create_user_with_email_and_password(email, password)
             st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
+            st.session_state.show_sign_up = False  # ปิดฟอร์มลงทะเบียน
+            st.experimental_rerun()  # รีเฟรชหน้าเว็บเพื่อกลับไปหน้า Login
         except:
             st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
 
@@ -119,22 +126,30 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-     st.sidebar.title("เมนู")
+    st.sidebar.title("เมนู")
 
-    # สร้างตัวแปรเพื่อเก็บสถานะของหน้า
-     page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+    # ตรวจสอบสถานะการล็อกอิน
+    if 'is_logged_in' not in st.session_state:
+        st.session_state.is_logged_in = False
 
-     if page == "Login":
-        login()
-     elif page == "Sign Up":
-        sign_up()
-     elif page == "หน้าแรก":
-        home()
-     elif page == "หน้าอัปโหลด":
-        admin()
-     elif page == "Chatbot":
-        chat()
+    if st.session_state.is_logged_in:
+        # ถ้าผู้ใช้ล็อกอินแล้ว
+        page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+        
+        if page == "หน้าแรก":
+            home()
+        elif page == "หน้าอัปโหลด":
+            admin()
+        elif page == "Chatbot":
+            chat()
+    else:
+        # ถ้ายังไม่ได้ล็อกอิน
+        page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up"])
+        
+        if page == "Login":
+            login()
+        elif page == "Sign Up":
+            sign_up()
 
 if __name__ == "__main__":
     main()
-
