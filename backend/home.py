@@ -66,25 +66,30 @@ def login():
                 st.write("ยังไม่มีบัญชี? กดปุ่ม Sign Up เพื่อลงทะเบียน")
                 if st.button("Sign Up"):
                     st.session_state.show_sign_up = True  # แสดงฟอร์มลงทะเบียน
+if st.session_state.get('show_sign_up', False):
+    sign_up_form()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
+else:
+    login()  # แสดงหน้า login ถ้ายังไม่ได้แสดงฟอร์ม Sign Up
+    if st.button("Sign Up"):
+        st.session_state.show_sign_up = True  # แสดงฟอร์มลงทะเบียน
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
 
-    if st.button("Sign Up"):
-        st.title("Sign Up")
+    st.title("Sign Up")
         
-        email = st.text_input("Email")
-        password = st.text_input("Password", type="password")
-    
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
     
         if email and password:
             try:
                 # ทำการสร้างบัญชีผู้ใช้ใน Firebase
                 auth.create_user_with_email_and_password(email, password)
                 st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
-                st.session_state.signup = False  # รีเซ็ตสถานะ signup
+                # รีเซ็ตสถานะการแสดงฟอร์มลงทะเบียนหลังจากลงทะเบียนสำเร็จ
+                st.session_state.signup = False  
+                st.session_state.is_logged_in = False  # ยังคงไม่ล็อกอินหลังการลงทะเบียน
                 st.session_state.show_sign_up = False  # ปิดฟอร์มลงทะเบียน
-                st.experimental_rerun()  # รีเฟรชหน้าเว็บเพื่อกลับไปหน้า Login
             except Exception as e:
                 st.error(f"ไม่สามารถลงทะเบียนได้: {e}")
         else:
