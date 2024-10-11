@@ -48,9 +48,9 @@ def login():
             st.rerun()  # เริ่มต้นการทำงานใหม่
         except Exception as e:
             st.error(f"Login ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
-    if st.button("Sign Up"):
-            st.session_state.show_sign_up = True  # เปลี่ยนสถานะไปที่ Sign Up
-            st.rerun()  # เริ่มต้นการทำงานใหม่
+            if st.button("Sign Up"):
+                   st.session_state.show_sign_up = True  # เปลี่ยนสถานะไปที่ Sign Up
+                   st.rerun()  # เริ่มต้นการทำงานใหม่
         
 
 # ฟังก์ชันสำหรับหน้า Sign Up
