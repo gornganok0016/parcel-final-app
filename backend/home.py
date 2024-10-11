@@ -69,15 +69,24 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    st.sidebar.title("เมนู")
-    page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
-
+   with st.sidebar:
+        page = option_menu(
+            "เมนู",  # ชื่อของเมนู
+            ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"],  # ชื่อของหน้าต่างๆ
+            icons=["house", "cloud-upload", "chat"],  # ไอคอนที่ต้องการใช้
+            menu_icon="cast",  # ไอคอนหลัก
+            default_index=0,  # หน้าหลักตอนเริ่ม
+        )
+    
     if page == "หน้าแรก":
-        home()
+        from pages.home import show_home  # นำเข้าฟังก์ชันจาก home.py
+        show_home()
     elif page == "หน้าอัปโหลด":
-        admin()
+        from pages.upload import show_upload  # นำเข้าฟังก์ชันจาก upload.py
+        show_upload()
     elif page == "Chatbot":
-        chat()
+        from pages.chat import show_chat  # นำเข้าฟังก์ชันจาก chat.py
+        show_chat()
 
 if __name__ == "__main__":
     main()
