@@ -22,8 +22,8 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 st.title("Sign Up")
-  email = st.text_input("Email")
-  password = st.text_input("Password", type="password")
+email = st.text_input("Email")
+password = st.text_input("Password", type="password")
       
 if st.button("Sign Up"):
     st.success("Sign Up สำเร็จ!")
