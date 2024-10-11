@@ -2,12 +2,9 @@ import streamlit as st
 import os
 import pandas as pd
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
-import pyrebase
-from streamlit_chat import message
 
-# กำหนดค่าเริ่มต้นสำหรับ messages
-st.session_state.setdefault('past', [])
-st.session_state.setdefault('generated', [])
+
+
 
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
 UPLOAD_FOLDER = 'uploads'
