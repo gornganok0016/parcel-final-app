@@ -71,7 +71,7 @@ def check_question_in_csv(question):
 # ฟังก์ชันหลัก
 def main():
     # สร้าง Navigation Bar
-    page = st.selectbox("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+    page = st.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
     if page == "หน้าแรก":
         home()
