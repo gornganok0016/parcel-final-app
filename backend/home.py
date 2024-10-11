@@ -39,8 +39,8 @@ def login():
     st.title("Login")
 
     # เพิ่ม key ที่ไม่ซ้ำกันใน text_input แต่ละตัว
-    email = st.text_input("Email", key=email_key)
-    password = st.text_input("Password", type="password", key=password_key)
+    email = st.text_input("Email", key=email)
+    password = st.text_input("Password", type="password", key=password)
     
     if st.button("Login"):
         try:
@@ -66,12 +66,9 @@ def login():
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
     st.title("Sign Up")
-        
-    email_key = f"signup_email_{st.session_state.get('unique_id', 0)}"
-    password_key = f"signup_password_{st.session_state.get('unique_id', 0)}"
     
-    email = st.text_input("Email สำหรับการลงทะเบียน", key=email_key)
-    password = st.text_input("Password สำหรับการลงทะเบียน", type="password", key=password_key)
+    email = st.text_input("Email สำหรับการลงทะเบียน", key=email)
+    password = st.text_input("Password สำหรับการลงทะเบียน", type="password", key=password)
 
     if st.button("ยืนยันการลงทะเบียน"):
         if email and password:
