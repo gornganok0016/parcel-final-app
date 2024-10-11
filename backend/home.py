@@ -52,9 +52,7 @@ def login():
         except Exception as e:
             error_message = str(e)
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-            
-            if 'user-not-found' in error_message:
-                st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")  # ลบลิงก์ Markdown
+            st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")  # ลบลิงก์ Markdown
 
                 # เพิ่มปุ่มให้ผู้ใช้สามารถลงทะเบียนได้
                 if st.button("Sign Up"):
