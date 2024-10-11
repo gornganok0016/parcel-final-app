@@ -51,13 +51,12 @@ def login():
                 auth.sign_in_with_email_and_password(email, password)
                 st.success("Login สำเร็จ!")
                 st.session_state.current_page = "home"  # เปลี่ยนหน้าไปยังหน้าแรก
-                st.experimental_rerun()  # บังคับรีเฟรชหน้า
-            else:
-                st.warning("Email นี้ยังไม่เคยลงทะเบียน. กรุณาทำการลงทะเบียน.")
-                st.session_state.current_page = "sign_up"  # เปลี่ยนไปหน้า Sign Up
-                st.experimental_rerun()  # บังคับรีเฟรชหน้า
         except Exception as e:
             st.error(f"Login ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
+
+    # ปุ่มไปยังหน้าลงทะเบียน
+    if st.button("Sign Up"):
+        st.session_state.current_page = "sign_up"  # เปลี่ยนหน้าไปยังหน้าลงทะเบียน
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
@@ -72,7 +71,6 @@ def sign_up():
             auth.create_user_with_email_and_password(email, password)
             st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
             st.session_state.current_page = "login"  # เปลี่ยนหน้าไปยังหน้า Login
-            st.experimental_rerun()  # บังคับรีเฟรชหน้า
         except Exception as e:
             st.error(f"Sign Up ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
 
