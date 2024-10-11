@@ -16,5 +16,5 @@ elif page == "หน้าอัปโหลด":
 elif page == "Chatbot":
     st.switch_page("Chatbot")  # สลับไปที่หน้า Chatbot
 
- if __name__ == "__main__":
-     main()
+if __name__ == "__main__":
+    main()
