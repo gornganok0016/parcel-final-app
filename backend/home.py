@@ -154,9 +154,6 @@ def main():
      st.sidebar.title("เมนู")
 
     # สร้างตัวแปรเพื่อเก็บสถานะของหน้า
-      st.sidebar.title("เมนู")
-
-    # สร้างตัวแปรเพื่อเก็บสถานะของหน้า
      page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
      if page == "Login":
