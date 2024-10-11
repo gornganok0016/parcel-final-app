@@ -37,6 +37,7 @@ auth = firebase.auth()
 # ฟังก์ชันสำหรับหน้า Login
 # ฟังก์ชันสำหรับหน้า Login
 # ฟังก์ชันสำหรับหน้า Login
+# ฟังก์ชันสำหรับหน้า Login
 def login():
     st.title("Login")
     
@@ -64,11 +65,12 @@ def login():
                     st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
                     st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
 
-if st.session_state.show_sign_up:
-     sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
+if st.session_state.get('show_sign_up', False):
+    sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
 else:
-     login()  # แสดงหน้า login
-
+    login()  # แสดงหน้า login ถ้ายังไม่ได้แสดงฟอร์ม Sign Up
+    if st.button("Sign Up"):
+        st.session_state.show_sign_up = True  # แสดงฟอร์มลงทะเบียน
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
