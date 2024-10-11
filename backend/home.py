@@ -71,14 +71,38 @@ def check_question_in_csv(question):
 # ฟังก์ชันหลัก
 def main():
     # สร้าง Navigation Bar
-    page = st.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+    st.markdown("""
+        <style>
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+        }
+        </style>
+        <div class="navbar">
+            <a href="#home" onclick="window.location.reload();">หน้าแรก</a>
+            <a href="#upload" onclick="window.location.reload();">หน้าอัปโหลด</a>
+            <a href="#chat" onclick="window.location.reload();">Chatbot</a>
+        </div>
+    """, unsafe_allow_html=True)
 
-    if page == "หน้าแรก":
-        home()
-    elif page == "หน้าอัปโหลด":
+    # จัดการการนำทาง
+    if st.experimental_get_query_params().get("page") == ["upload"]:
         admin()
-    elif page == "Chatbot":
+    elif st.experimental_get_query_params().get("page") == ["chat"]:
         chat()
+    else:
+        home()
         
 if __name__ == "__main__":
     main()
