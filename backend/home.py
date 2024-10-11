@@ -42,9 +42,6 @@ def login():
     email = st.text_input("Email", key="email_input")
     password = st.text_input("Password", type="password", key="password_input")
     
-    if st.session_state.is_logged_in:
-        return  # ออกจากฟังก์ชันถ้าล็อกอินแล้ว
-    
     if st.button("Login"):
         try:
             # ทำการล็อกอินผู้ใช้
@@ -54,10 +51,8 @@ def login():
             st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
         except Exception as e:
             error_message = str(e)
-            # แสดงข้อความผิดพลาด
-            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")  
+            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
             
-            # ตรวจสอบว่าข้อผิดพลาดคือการไม่มีอีเมลใน Firebase
             if 'user-not-found' in error_message:
                 st.warning("อีเมลนี้ไม่มีในระบบ! กรุณา [ลงทะเบียนที่นี่](#signup)")
 
