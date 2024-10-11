@@ -34,12 +34,13 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 # ฟังก์ชันสำหรับหน้า Login
+# ฟังก์ชันสำหรับหน้า Login
 def login():
     st.title("Login")
-    
+
     # เพิ่ม key ที่ไม่ซ้ำกันใน text_input แต่ละตัว
-    email = st.text_input("Email", key="login_email")
-    password = st.text_input("Password", type="password", key="login_password")
+    email = st.text_input("Email", key=email_key)
+    password = st.text_input("Password", type="password", key=password_key)
     
     if st.button("Login"):
         try:
@@ -60,14 +61,17 @@ def login():
                 if st.button("Sign Up"):  # แสดงปุ่ม Sign Up
                     st.session_state.show_sign_up = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
                     st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
-                    sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
-               
+                    sign_up()
+
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
     st.title("Sign Up")
         
-    email = st.text_input("Email สำหรับการลงทะเบียน", key="signup_email")
-    password = st.text_input("Password สำหรับการลงทะเบียน", type="password", key="signup_password")
+    email_key = f"signup_email_{st.session_state.get('unique_id', 0)}"
+    password_key = f"signup_password_{st.session_state.get('unique_id', 0)}"
+    
+    email = st.text_input("Email สำหรับการลงทะเบียน", key=email_key)
+    password = st.text_input("Password สำหรับการลงทะเบียน", type="password", key=password_key)
 
     if st.button("ยืนยันการลงทะเบียน"):
         if email and password:
