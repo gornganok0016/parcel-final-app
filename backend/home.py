@@ -34,14 +34,15 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 # ฟังก์ชันสำหรับหน้า Login
+# ฟังก์ชันสำหรับหน้า Login
 def login():
     st.title("Login")
     
-    # เพิ่ม key ที่ไม่ซ้ำกันใน text_input แต่ละตัว
+    # เพิ่ม key ที่ไม่ซ้ำกันใน text_input และ button
     email = st.text_input("Email", key="login_email")
     password = st.text_input("Password", type="password", key="login_password")
     
-    if st.button("Login"):
+    if st.button("Login", key="login_button"):
         try:
             # ทำการล็อกอินผู้ใช้
             user = auth.sign_in_with_email_and_password(email, password)
@@ -57,7 +58,7 @@ def login():
             
             if 'user-not-found' in error_message:
                 st.warning("อีเมลนี้ไม่มีในระบบ!")
-                if st.button("Sign Up"):  # แสดงปุ่ม Sign Up
+                if st.button("Sign Up", key="signup_button_login"):  # เพิ่ม key สำหรับปุ่ม Sign Up ในหน้า Login
                     st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
                     st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
 
@@ -65,18 +66,18 @@ if st.session_state.get('show_sign_up', False):
     sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
 else:
     login()  # แสดงหน้า login ถ้ายังไม่ได้แสดงฟอร์ม Sign Up
-    if st.button("Sign Up"):
+    if st.button("Sign Up", key="signup_button_main"):
         st.session_state.show_sign_up = True  # แสดงฟอร์มลงทะเบียน
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
-
     st.title("Sign Up")
-        
+    
+    # เพิ่ม key ที่ไม่ซ้ำกันใน text_input และ button
     email = st.text_input("Email สำหรับการลงทะเบียน", key="signup_email")
     password = st.text_input("Password สำหรับการลงทะเบียน", type="password", key="signup_password")
 
-    if st.button("ยืนยันการลงทะเบียน"):
+    if st.button("ยืนยันการลงทะเบียน", key="signup_confirm_button"):
         if email and password:
             try:
                 # ทำการสร้างบัญชีผู้ใช้ใน Firebase
