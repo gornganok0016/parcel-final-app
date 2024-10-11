@@ -29,7 +29,6 @@ def login():
     if st.button("Login"):
        try:
             user = auth.sign_in_with_email_and_password(email, password)
-            st.success("Login สำเร็จ!")
             st.session_state.sign_up_status = "success"
             st.session_state.current_page = "home"
             st.switch_page("pages/3_Home.py")  # สลับไปยังหน้า Home
