@@ -70,13 +70,13 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    # สร้าง Navigation Bar
+    # สร้าง Navigation Bar ด้านบน
     st.markdown("""
         <style>
         .navbar {
             display: flex;
             justify-content: space-around;
-            background-color: #ffffff;
+            background-color: #f0f0f0;
             padding: 10px;
         }
         .navbar a {
@@ -90,16 +90,19 @@ def main():
         }
         </style>
         <div class="navbar">
-            <a href="#home" onclick="window.location.reload();">หน้าแรก</a>
-            <a href="#upload" onclick="window.location.reload();">หน้าอัปโหลด</a>
-            <a href="#chat" onclick="window.location.reload();">Chatbot</a>
+            <a href="#" onclick="window.location.reload(); st.session_state['page'] = 'home';">หน้าแรก</a>
+            <a href="#" onclick="window.location.reload(); st.session_state['page'] = 'upload';">หน้าอัปโหลด</a>
+            <a href="#" onclick="window.location.reload(); st.session_state['page'] = 'chat';">Chatbot</a>
         </div>
     """, unsafe_allow_html=True)
 
     # จัดการการนำทาง
-    if st.experimental_get_query_params().get("page") == ["upload"]:
+    if 'page' not in st.session_state:
+        st.session_state['page'] = 'home'  # กำหนดค่าเริ่มต้น
+
+    if st.session_state['page'] == 'upload':
         admin()
-    elif st.experimental_get_query_params().get("page") == ["chat"]:
+    elif st.session_state['page'] == 'chat':
         chat()
     else:
         home()
