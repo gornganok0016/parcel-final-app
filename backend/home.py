@@ -4,6 +4,8 @@ import pandas as pd
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 import pyrebase
 
+if 'unique_id' not in st.session_state:
+    st.session_state.unique_id = 0  # กำหนดค่าเริ่มต้น
 
 # Firebase config
 firebaseConfig = {
@@ -37,10 +39,14 @@ auth = firebase.auth()
 # ฟังก์ชันสำหรับหน้า Login
 def login():
     st.title("Login")
-
+    
+    # สร้าง key ที่ไม่ซ้ำกัน
+    email_key = f"login_email_{st.session_state.unique_id}"
+    password_key = f"login_password_{st.session_state.unique_id}"
+    
     # เพิ่ม key ที่ไม่ซ้ำกันใน text_input แต่ละตัว
-    email = st.text_input("Email", key=email)
-    password = st.text_input("Password", type="password", key=password)
+    email = st.text_input("Email", key=email_key)
+    password = st.text_input("Password", type="password", key=password_key)
     
     if st.button("Login"):
         try:
@@ -66,9 +72,12 @@ def login():
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
     st.title("Sign Up")
+        
+    email_key = f"signup_email_{st.session_state.unique_id}"
+    password_key = f"signup_password_{st.session_state.unique_id}"
     
-    email = st.text_input("Email สำหรับการลงทะเบียน", key=email)
-    password = st.text_input("Password สำหรับการลงทะเบียน", type="password", key=password)
+    email = st.text_input("Email สำหรับการลงทะเบียน", key=email_key)
+    password = st.text_input("Password สำหรับการลงทะเบียน", type="password", key=password_key)
 
     if st.button("ยืนยันการลงทะเบียน"):
         if email and password:
@@ -88,7 +97,6 @@ if st.session_state.get('show_sign_up', False):
     sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
 else:
     login()  # แสดงหน้า login ถ้ายังไม่ได้แสดงฟอร์ม Sign Up
-
 
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
