@@ -3,5 +3,7 @@ easyocr
 Pillow
 pandas
 roboflow
+streamlit-option-menu
+streamlit
 opencv-python-headless
 
