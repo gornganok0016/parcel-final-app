@@ -27,4 +27,5 @@ password = st.text_input("Password", type="password")
       
 if st.button("Sign Up"):
     st.success("Sign Up สำเร็จ!")
-    st.switch_page("Login")  # กลับไปที่หน้า Login
+    st.session_state.current_page = "login"  # เปลี่ยนไปยังหน้า Login
+    st.switch_page("1_Login")  # สลับไปยังหน้า Login
