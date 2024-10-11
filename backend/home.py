@@ -71,41 +71,15 @@ def check_question_in_csv(question):
 # ฟังก์ชันหลัก
 def main():
     # สร้าง Navigation Bar ด้านบน
-    st.markdown("""
-        <style>
-        .navbar {
-            display: flex;
-            justify-content: space-around;
-            background-color: #f0f0f0;
-            padding: 10px;
-        }
-        .navbar a {
-            text-decoration: none;
-            color: black;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .navbar a:hover {
-            background-color: #ddd;
-        }
-        </style>
-        <div class="navbar">
-            <a href="#" onclick="window.location.reload(); st.session_state['page'] = 'home';">หน้าแรก</a>
-            <a href="#" onclick="window.location.reload(); st.session_state['page'] = 'admin';">หน้าอัปโหลด</a>
-            <a href="#" onclick="window.location.reload(); st.session_state['page'] = 'chat';">Chatbot</a>
-        </div>
-    """, unsafe_allow_html=True)
+   st.sidebar.title("เมนู")
+    page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
-    # จัดการการนำทาง
-    if 'page' not in st.session_state:
-        st.session_state['page'] = 'home'  # กำหนดค่าเริ่มต้น
-
-    if st.session_state['page'] == 'upload':
-        admin()
-    elif st.session_state['page'] == 'chat':
-        chat()
-    else:
+    if page == "หน้าแรก":
         home()
+    elif page == "หน้าอัปโหลด":
+        admin()
+    elif page == "Chatbot":
+        chat()
         
 if __name__ == "__main__":
     main()
