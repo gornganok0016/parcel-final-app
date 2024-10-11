@@ -82,14 +82,11 @@ def main():
         )
 
     if page == "หน้าแรก":
-        from home import show_home  # นำเข้าฟังก์ชันจาก home.py
-        show_home()
+        home()
     elif page == "หน้าอัปโหลด":
-        from upload import show_upload  # นำเข้าฟังก์ชันจาก upload.py
-        show_upload()
+        admin()
     elif page == "Chatbot":
-        from chat import show_chat  # นำเข้าฟังก์ชันจาก chat.py
-        show_chat()
+        chat()
         
 if __name__ == "__main__":
     main()
