@@ -21,21 +21,17 @@ firebaseConfig = {
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
-    st.title("Login")
+st.title("Login")
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
     
-    if st.button("Login"):
-        try:
-            user = auth.sign_in_with_email_and_password(email, password)
-            st.success("Login สำเร็จ!")
-        except:
-            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-
 if st.button("Login"):
-    # สมมุติว่าล็อกอินสำเร็จ
-    st.success("Login สำเร็จ!")
-    st.switch_page("Home")  # ไปที่หน้า Home
+    try:
+        user = auth.sign_in_with_email_and_password(email, password)
+        st.success("Login สำเร็จ!")
+        st.switch_page("Home")  # ไปที่หน้า Home
+    except:
+        st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
 
 if st.button("Sign Up"):
     st.switch_page("SignUp")  # ไปที่หน้า Sign Up
