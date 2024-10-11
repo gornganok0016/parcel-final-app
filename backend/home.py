@@ -7,13 +7,15 @@ def main():
     
     # ตรวจสอบสถานะของ current_page และเรียก switch_page ตามหน้า
     if st.session_state.current_page == "login":
-        st.switch_page("1_Login")  # ไปที่หน้า Login
+        st.switch_page("pages/1_Login.py")  # ไปที่หน้า Login
     elif st.session_state.current_page == "sign_up":
-        st.switch_page("2_SignUp")  # ไปที่หน้า Sign Up
+        st.switch_page("pages/2_SignUp.py")  # ไปที่หน้า Sign Up
+    elif st.session_state.current_page == "home":
+        st.switch_page("pages/5_Home.py")  # ไปที่หน้า Sign Up
     elif st.session_state.current_page == "chat":
-        st.switch_page("4_Chatbot")  # ไปที่หน้า Chatbot
+        st.switch_page("pages/4_Chatbot.py")  # ไปที่หน้า Chatbot
     elif st.session_state.current_page == "admin":
-        st.switch_page("3_Admin")  # ไปที่หน้า Admin
+        st.switch_page("pages/3_Admin.py")  # ไปที่หน้า Admin
 
 if __name__ == "__main__":
     main()
