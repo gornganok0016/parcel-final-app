@@ -81,7 +81,7 @@ def main():
             orientation="horizontal"  # ตั้งค่าการแสดงผลเป็นแนวนอน
         )
 
-     if page == "หน้าแรก":
+    if page == "หน้าแรก":
         from home import show_home  # นำเข้าฟังก์ชันจาก home.py
         show_home()
     elif page == "หน้าอัปโหลด":
