@@ -6,7 +6,7 @@ import pyrebase
 
  if 'is_logged_in' not in st.session_state:
         st.session_state.is_logged_in = False
-    if 'show_sign_up' not in st.session_state:
+ if 'show_sign_up' not in st.session_state:
         st.session_state.show_sign_up = False
 
 
