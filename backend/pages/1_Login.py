@@ -21,27 +21,26 @@ firebaseConfig = {
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
-st.title("Login")
-email = st.text_input("Email")
-password = st.text_input("Password", type="password")
+def login():
+    st.title("Login")
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
 
-if st.button("Login"):
-    try:
-        user = auth.sign_in_with_email_and_password(email, password)
-        st.success("Login สำเร็จ!")
-        st.session_state.current_page = "home"  # เปลี่ยนไปยังหน้า Home
-        st.switch_page("3_Home")  # สลับไปยังหน้า Home
-    except Exception as e:
-        st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-        print(e)  # แสดงข้อผิดพลาดใน console (สำหรับการ debug)
-        st.session_state.current_page = "sign_up"  # เปลี่ยนสถานะ
-        st.switch_page("2_SignUp")  # สลับไปยังหน้า Sign Up
+    if st.button("Login"):
+        try:
+            user = auth.sign_in_with_email_and_password(email, password)
+            st.success("Login สำเร็จ!")
+            st.session_state.current_page = "home"
+            st.switch_page("3_Home")
+        except Exception as e:
+            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+            st.session_state.current_page = "sign_up"
+            st.switch_page("2_SignUp")
 
-if st.button("Sign Up"):
-    st.session_state.current_page = "sign_up"  # เปลี่ยนสถานะ
-    st.switch_page("2_SignUp")  # สลับไปยังหน้า Sign Up
+    if st.button("Sign Up", key="sign_up_button"):  # ใช้ key เพื่อหลีกเลี่ยง ID ซ้ำ
+        st.session_state.current_page = "sign_up"
+        st.switch_page("2_SignUp")
 
-# ไฟล์ login.py
-if st.button("Sign Up"):
-    st.switch_page("2_SignUp")
+if __name__ == "__main__":
+    login()
 
