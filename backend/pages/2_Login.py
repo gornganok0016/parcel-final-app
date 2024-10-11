@@ -33,5 +33,7 @@ if st.button("Login"):
     except:
         st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
 
+# ไฟล์ login.py
 if st.button("Sign Up"):
-    st.switch_page("SignUp")  # ไปที่หน้า Sign Up
+    st.switch_page("SignUp")
+
