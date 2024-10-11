@@ -60,13 +60,8 @@ def login():
                 if st.button("Sign Up"):  # แสดงปุ่ม Sign Up
                     st.session_state.show_sign_up = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
                     st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
-    if st.session_state.get('show_sign_up', False):
-        sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
-    else:
-        login()  # แสดงหน้า login ถ้ายังไม่ได้แสดงฟอร์ม Sign Up
-        if st.button("Sign Up"):
-            st.session_state.show_sign_up = True  # แสดงฟอร์มลงทะเบียน
-
+                    sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
+               
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
     st.title("Sign Up")
