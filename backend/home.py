@@ -4,40 +4,6 @@ import pandas as pd
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 import pyrebase
 
-st.markdown(
-    """
-    <style>
-    /* เปลี่ยนสีพื้นหลังของหน้า */
-    .st-emotion-cache-1yiq2ps {
-        background-color: #333366;  /* สีพื้นหลัง */
-    }
-    .st-emotion-cache-h4xjwg{
-        background-color: #ff5f5f;  /* สีพื้นหลัง */
-    }
-    .st-emotion-cache-6qob1r{
-        background-color: #333366;  /* สีพื้นหลัง */
-    }
-    .st-emotion-cache-kgpedg{
-        background-color: #ff5f5f;  /* สีพื้นหลัง */
-    }
-    /* เปลี่ยนสีพื้นหลังของ Sidebar */
-    .css-1r6slb0 {
-        background-color: #f3e0b2;  /* สีพื้นหลังของ Sidebar */
-    }
-    /* เปลี่ยนสีปุ่ม */
-    .stButton>button {
-        background-color: #f9e75e; /* สีปุ่ม */
-        color: white;  /* สีตัวอักษรบนปุ่ม */
-    }
-    /* เปลี่ยนสีตัวอักษร */
-    .css-1y4p2ps {
-        color: #2C3E50; /* สีตัวอักษร */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Firebase config
 firebaseConfig = {
     'apiKey': "AIzaSyCt7JaHwmHCS9Lm_hiZQv1B2XM_1eR4zPM",
@@ -60,12 +26,14 @@ CSV_FILE = 'D:/POSTOAPP2/backend/names.csv'  # แก้ไขให้ตรง
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
-# ตัวแปรเพื่อเก็บสถานะการเข้าสู่ระบบ
-is_logged_in = False
+# กำหนดค่าเริ่มต้นให้กับ session state
+if 'is_logged_in' not in st.session_state:
+    st.session_state.is_logged_in = False
+if 'signup' not in st.session_state:
+    st.session_state.signup = False
 
 # ฟังก์ชันสำหรับหน้า Login
 def login():
-    global is_logged_in  # แก้ไขสถานะการเข้าสู่ระบบได้
     st.title("Login")
     
     email = st.text_input("Email")
@@ -75,7 +43,7 @@ def login():
         try:
             # ทำการล็อกอินผู้ใช้
             user = auth.sign_in_with_email_and_password(email, password)
-            is_logged_in = True  # เปลี่ยนสถานะเป็นล็อกอินแล้ว
+            st.session_state.is_logged_in = True  # เปลี่ยนสถานะเป็นล็อกอินแล้ว
             st.success("Login สำเร็จ!")
             st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
         except Exception as e:
@@ -88,6 +56,7 @@ def login():
                 if st.button("Sign Up"):
                     st.session_state.signup = True  # ตั้งค่าให้ไปที่หน้า Sign Up
                     st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
     st.title("Sign Up")
@@ -100,7 +69,9 @@ def sign_up():
             # ทำการสร้างบัญชีผู้ใช้
             auth.create_user_with_email_and_password(email, password)
             st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
-        except:
+            st.session_state.signup = False  # รีเซ็ตสถานะ signup
+            st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+        except Exception as e:
             st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
 
 # ฟังก์ชันสำหรับหน้าแรก
@@ -163,10 +134,8 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    global is_logged_in  # ใช้ตัวแปรสถานะล็อกอิน
-
-    if not is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
-        if st.session_state.get("signup", False):  # ตรวจสอบถ้าต้องการไปที่หน้า Sign Up
+    if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
+        if st.session_state.signup:  # ตรวจสอบถ้าต้องการไปที่หน้า Sign Up
             sign_up()  # แสดงหน้า Sign Up
         else:
             login()  # แสดงหน้า Login
@@ -184,3 +153,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
