@@ -17,6 +17,11 @@ firebaseConfig = {
     'measurementId': "G-HL46XMRBKM"
 }
 
+if 'is_logged_in' not in st.session_state:
+        st.session_state.is_logged_in = False
+
+    if 'signup' not in st.session_state:
+        st.session_state.signup = False
 
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
 UPLOAD_FOLDER = 'uploads'
@@ -27,13 +32,6 @@ CSV_FILE = 'D:/POSTOAPP2/backend/names.csv'  # แก้ไขให้ตรง
 # Firebase initialization
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
-
-# กำหนดค่าเริ่มต้นให้กับ session state
-if 'is_logged_in' not in st.session_state:
-    st.session_state.is_logged_in = False
-
-if 'signup' not in st.session_state:
-    st.session_state.signup = False
 
 # ฟังก์ชันสำหรับหน้า Login
 def login():
@@ -71,7 +69,7 @@ def sign_up():
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
     
-    if st.button("Sign Up"):
+     if st.button("Sign Up"):
         try:
             # ทำการสร้างบัญชีผู้ใช้
             auth.create_user_with_email_and_password(email, password)
@@ -79,7 +77,8 @@ def sign_up():
             st.session_state.signup = False  # รีเซ็ตสถานะ signup
             st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
         except Exception as e:
-            st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง: " + str(e))
+            st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
     st.title("หน้าแรก")
@@ -141,12 +140,7 @@ def check_question_in_csv(question):
 # ฟังก์ชันหลัก
 def main():
     # กำหนดค่าเริ่มต้นให้กับ session state
-    if 'is_logged_in' not in st.session_state:
-        st.session_state.is_logged_in = False
-
-    if 'signup' not in st.session_state:
-        st.session_state.signup = False
-
+    
     if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
         if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
             sign_up()  # แสดงหน้า Sign Up
