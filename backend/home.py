@@ -51,9 +51,13 @@ def login():
             st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
         except Exception as e:
             error_message = str(e)
-            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-            st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")  # ลบลิงก์ Markdown
-             # เพิ่มปุ่มให้ผู้ใช้สามารถลงทะเบียนได้
+            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")  # แสดงข้อความผิดพลาด
+            
+            # ตรวจสอบว่าข้อผิดพลาดคือการไม่มีอีเมลใน Firebase
+            if 'user-not-found' in error_message:
+                st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")
+                
+            # เพิ่มปุ่มให้ผู้ใช้สามารถลงทะเบียนได้
             if st.button("Sign Up"):
                 st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
                 st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
@@ -62,8 +66,6 @@ def login():
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
-    if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
-                    sign_up()  # แสดงหน้า Sign Up
 
     st.title("Sign Up")
     
@@ -145,9 +147,6 @@ def main():
 
     if 'signup' not in st.session_state:
         st.session_state.signup = False
-
-    if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
-            sign_up()  # แสดงหน้า Sign Up
 
     if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
         if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
