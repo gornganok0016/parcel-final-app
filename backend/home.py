@@ -154,18 +154,22 @@ def main():
      st.sidebar.title("เมนู")
 
     # สร้างตัวแปรเพื่อเก็บสถานะของหน้า
-    page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+      st.sidebar.title("เมนู")
 
-    if page == "Login":
+    # สร้างตัวแปรเพื่อเก็บสถานะของหน้า
+     page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+
+     if page == "Login":
         login()
-    elif page == "Sign Up":
+     elif page == "Sign Up":
         sign_up()
-    elif page == "หน้าแรก":
+     elif page == "หน้าแรก":
         home()
-    elif page == "หน้าอัปโหลด":
+     elif page == "หน้าอัปโหลด":
         admin()
-    elif page == "Chatbot":
+     elif page == "Chatbot":
         chat()
+
 
 
 if __name__ == "__main__":
