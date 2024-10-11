@@ -57,6 +57,9 @@ def login():
             if st.button("Sign Up"):
                 st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
                 st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+                if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
+                    sign_up()  # แสดงหน้า Sign Up
+
 
 
 # ฟังก์ชันสำหรับหน้า Sign Up
