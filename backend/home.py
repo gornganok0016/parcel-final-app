@@ -135,19 +135,20 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
+    # กำหนดค่าเริ่มต้นให้กับ session state
     if 'is_logged_in' not in st.session_state:
         st.session_state.is_logged_in = False
 
     if 'signup' not in st.session_state:
         st.session_state.signup = False
 
-    # เรียกใช้ฟังก์ชัน login หรือ sign_up
-    if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
-        sign_up()  # แสดงหน้า Sign Up
+    if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
+        if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
+            sign_up()  # แสดงหน้า Sign Up
+        else:
+            login()  # แสดงหน้า Login
     else:
-        login()  # แสดงหน้า Login
-    else:
-        # เมนูสำหรับหน้าอื่น ๆ
+        # เมนูสำหรับหน้าอื่น ๆ เมื่อผู้ใช้ล็อกอินสำเร็จ
         st.sidebar.title("เมนู")
         page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
@@ -157,7 +158,6 @@ def main():
             admin()
         elif page == "Chatbot":
             chat()
-
 
 if __name__ == "__main__":
     main()
