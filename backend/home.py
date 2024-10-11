@@ -54,7 +54,7 @@ def login():
             # แสดงข้อความผิดพลาดเฉพาะเมื่อเกิดข้อผิดพลาด
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
             
-           if 'user-not-found' in error_message:
+            if 'user-not-found' in error_message:
                 st.warning("อีเมลนี้ไม่มีในระบบ!")
                 st.session_state.show_sign_up = True  # ใช้ตัวแปรสถานะเพื่อแสดงฟอร์ม Sign Up
 
