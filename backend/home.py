@@ -76,7 +76,7 @@ def main():
         .navbar {
             display: flex;
             justify-content: space-around;
-            background-color: #f0f0f0;
+            background-color: #ffffff;
             padding: 10px;
         }
         .navbar a {
