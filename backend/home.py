@@ -71,7 +71,7 @@ def check_question_in_csv(question):
 # ฟังก์ชันหลัก
 def main():
     # สร้าง Navigation Bar ด้านบน
-   st.sidebar.title("เมนู")
+    st.sidebar.title("เมนู")
     page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
     if page == "หน้าแรก":
