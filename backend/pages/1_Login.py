@@ -38,7 +38,7 @@ def login():
             st.switch_page("pages/2_SignUp")  # สลับไปยังหน้า Sign Up
 
     if st.button("Sign up"):
-    st.switch_page("pages/2_SignUp.py")
+        st.switch_page("pages/2_SignUp.py")
 
 if __name__ == "__main__":
     login()
