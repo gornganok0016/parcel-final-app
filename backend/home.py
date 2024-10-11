@@ -36,6 +36,10 @@ auth = firebase.auth()
 current_page = "login"
 
 # ฟังก์ชันสำหรับหน้า Login
+# ตัวแปรสำหรับติดตามหน้า
+current_page = "login"
+
+# ฟังก์ชันสำหรับหน้า Login
 def login():
     st.title("Login")
     
@@ -59,8 +63,8 @@ def login():
 def sign_up():
     st.title("Sign Up")
     
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
+    email = st.text_input("Email", key="sign_up_email")  # เพิ่ม key เพื่อหลีกเลี่ยงการซ้ำกัน
+    password = st.text_input("Password", type="password", key="sign_up_password")  # เพิ่ม key เพื่อหลีกเลี่ยงการซ้ำกัน
     
     if st.button("Sign Up"):
         try:
@@ -131,38 +135,19 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    st.sidebar.title("เมนู")
-# ตรวจสอบสถานะการล็อกอิน
     global current_page
+
+    # ลูปจนกว่าจะมีการเปลี่ยนหน้า
     while True:
         if current_page == "login":
             current_page = login()
         elif current_page == "sign_up":
             current_page = sign_up()
         elif current_page == "home":
-            current_page = home()
-    
-       
-    # if st.session_state.is_logged_in:
-    #     # ถ้าผู้ใช้ล็อกอินแล้ว
-    #     page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
-       
-    #     if page == "หน้าแรก":
-    #         home()
-    #     elif page == "หน้าอัปโหลด":
-    #         admin()
-    #     elif page == "Chatbot":
-    #         chat()
-    # else:
-    #     # ถ้ายังไม่ได้ล็อกอิน
-    #     page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up"])
-        
-    #     if page == "Login":
-    #         login()
-    #         if st.session_state.show_sign_up:
-    #                sign_up()  # แสดงฟอร์ม Sign Up  
-    #     elif page == "Sign Up":
-    #         sign_up()
+            st.title("หน้าแรก")
+            st.write("ยินดีต้อนรับสู่แอปพลิเคชันของเรา!")
+            if st.button("Log out"):
+                current_page = "login"  # ออกจากระบบและกลับไปที่หน้า Login
 
 if __name__ == "__main__":
     main()
