@@ -151,19 +151,22 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    st.sidebar.title("เมนู")
+     st.sidebar.title("เมนู")
 
-    # สร้างลิงก์สำหรับแต่ละหน้า
-    if st.sidebar.button("Login"):
+    # สร้างตัวแปรเพื่อเก็บสถานะของหน้า
+    page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+
+    if page == "Login":
         login()
-    if st.sidebar.button("Sign Up"):
+    elif page == "Sign Up":
         sign_up()
-    if st.sidebar.button("หน้าแรก"):
+    elif page == "หน้าแรก":
         home()
-    if st.sidebar.button("หน้าอัปโหลด"):
+    elif page == "หน้าอัปโหลด":
         admin()
-    if st.sidebar.button("Chatbot"):
+    elif page == "Chatbot":
         chat()
+
 
 if __name__ == "__main__":
     main()
