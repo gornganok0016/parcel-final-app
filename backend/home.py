@@ -53,9 +53,10 @@ def login():
             error_message = str(e)
             # แสดงข้อความผิดพลาดเฉพาะเมื่อเกิดข้อผิดพลาด
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+            
             if 'user-not-found' in error_message:
-                st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")
-                if st.button("Sign Up"):
+                st.warning("อีเมลนี้ไม่มีในระบบ!")
+                if st.button("Sign Up"):  # แสดงปุ่ม Sign Up
                     st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
                     st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
 # ฟังก์ชันสำหรับหน้า Sign Up
@@ -136,9 +137,7 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    # กำหนดค่าเริ่มต้นให้กับ session state
-    
-    if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
+     if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
         if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
             sign_up()  # แสดงหน้า Sign Up
         else:
