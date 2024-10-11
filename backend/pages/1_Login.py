@@ -36,5 +36,5 @@ if st.button("Login"):
 
 # ไฟล์ login.py
 if st.button("Sign Up"):
-    st.switch_page("SignUp")
+    st.switch_page("2_SignUp")
 
