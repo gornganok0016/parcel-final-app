@@ -2,7 +2,7 @@ import streamlit as st
 
 def main():
     st.sidebar.title("เมนู")
-    page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+    # page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
     if page == "Login":
         st.switch_page("Login")  # สลับไปที่หน้า Login
