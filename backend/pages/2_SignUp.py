@@ -24,7 +24,7 @@ auth = firebase.auth()
 def sign_up():
     st.title("Sign Up")
 
-     if "signup_status" not in st.session_state:
+    if "signup_status" not in st.session_state:
         st.session_state.signup_status = None  # ตั้งค่าเริ่มต้นเป็น None
 
     
