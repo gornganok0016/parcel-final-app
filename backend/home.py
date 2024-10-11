@@ -4,6 +4,41 @@ import pandas as pd
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 import pyrebase
 
+st.markdown(
+    """
+    <style>
+    /* เปลี่ยนสีพื้นหลังของหน้า */
+    .st-emotion-cache-1yiq2ps {
+        background-color: #333366;  /* สีพื้นหลัง */
+    }
+    .st-emotion-cache-h4xjwg{
+        background-color: #ff5f5f;  /* สีพื้นหลัง */
+    }
+    .st-emotion-cache-6qob1r{
+        background-color: #333366;  /* สีพื้นหลัง */
+    }
+    .st-emotion-cache-kgpedg{
+        background-color: #ff5f5f;  /* สีพื้นหลัง */
+    }
+    /* เปลี่ยนสีพื้นหลังของ Sidebar */
+    .css-1r6slb0 {
+        background-color: #f3e0b2;  /* สีพื้นหลังของ Sidebar */
+    }
+    /* เปลี่ยนสีปุ่ม */
+    .stButton>button {
+        background-color: #f9e75e; /* สีปุ่ม */
+        color: white;  /* สีตัวอักษรบนปุ่ม */
+    }
+    /* เปลี่ยนสีตัวอักษร */
+    .css-1y4p2ps {
+        color: #2C3E50; /* สีตัวอักษร */
+    }
+  
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Firebase config
 firebaseConfig = {
     'apiKey': "AIzaSyCt7JaHwmHCS9Lm_hiZQv1B2XM_1eR4zPM",
