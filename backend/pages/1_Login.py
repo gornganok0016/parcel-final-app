@@ -32,7 +32,7 @@ def login():
             st.success("Login สำเร็จ!")
             st.session_state.current_page = "home"
             st.switch_page("pages/3_Home.py")  # สลับไปยังหน้า Home
-        except Exception as e:
+        except:
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
             st.session_state.current_page = "Sign Up"
             st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Sign Up
