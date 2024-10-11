@@ -27,12 +27,9 @@ def login():
         try:
             user = auth.sign_in_with_email_and_password(email, password)
             st.success("Login สำเร็จ!")
-            st.switch_page("pages/5_Home.py")  # สลับไปยังหน้า Sign Up
         except:
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-    if st.button("Sign Up"):
-        st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Sign Up
-        
+
 if __name__ == "__main__":
     login()
 
