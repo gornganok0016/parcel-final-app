@@ -3,6 +3,19 @@ import os
 import pandas as pd
 from streamlit_option_menu import option_menu
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
+import pyrebase
+
+# Firebase config
+firebaseConfig = {
+    'apiKey': "AIzaSyCt7JaHwmHCS9Lm_hiZQv1B2XM_1eR4zPM",
+    'authDomain': "posto-ai-app.firebaseapp.com",
+    'databaseURL': "https://YOUR_PROJECT_ID.firebaseio.com",
+    'projectId': "posto-ai-app",
+    'storageBucket': "posto-ai-app.appspot.com",
+    'messagingSenderId': "408360408985",
+    'appId': "1:408360408985:web:55ec7842c40203f28c6508",
+    'measurementId': "G-HL46XMRBKM"
+}
 
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
 UPLOAD_FOLDER = 'uploads'
@@ -70,11 +83,14 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    # สร้าง Navigation Bar ด้านบน
     st.sidebar.title("เมนู")
-    page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+    page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
-    if page == "หน้าแรก":
+    if page == "Login":
+        login()
+    elif page == "Sign Up":
+        sign_up()
+    elif page == "หน้าแรก":
         home()
     elif page == "หน้าอัปโหลด":
         admin()
