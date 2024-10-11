@@ -23,6 +23,39 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 CSV_FILE = 'backend/names.csv'  # แก้ไขให้ตรงตามพาธไฟล์
 
+irebase = pyrebase.initialize_app(firebaseConfig)
+auth = firebase.auth()
+
+# ฟังก์ชันสำหรับหน้า Login
+def login():
+    st.title("Login")
+    
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
+    
+    if st.button("Login"):
+        try:
+            # ทำการล็อกอินผู้ใช้
+            user = auth.sign_in_with_email_and_password(email, password)
+            st.success("Login สำเร็จ!")
+        except:
+            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+
+# ฟังก์ชันสำหรับหน้า Sign Up
+def sign_up():
+    st.title("Sign Up")
+    
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
+    
+    if st.button("Sign Up"):
+        try:
+            # ทำการสร้างบัญชีผู้ใช้
+            auth.create_user_with_email_and_password(email, password)
+            st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
+        except:
+            st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+            
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
     st.title("หน้าแรก")
