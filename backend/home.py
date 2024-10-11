@@ -3,6 +3,7 @@ import os
 import pandas as pd
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 import pyrebase
+from firebase_auth import auth  # ตรวจสอบว่าได้ import Firebase auth ถูกต้องหรือไม่
 
 # Firebase config
 firebaseConfig = {
@@ -29,6 +30,7 @@ auth = firebase.auth()
 # กำหนดค่าเริ่มต้นให้กับ session state
 if 'is_logged_in' not in st.session_state:
     st.session_state.is_logged_in = False
+
 if 'signup' not in st.session_state:
     st.session_state.signup = False
 
@@ -36,8 +38,8 @@ if 'signup' not in st.session_state:
 def login():
     st.title("Login")
     
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
+    email = st.text_input("Email", key="email_input")  # เก็บค่าใน session state
+    password = st.text_input("Password", type="password", key="password_input")  # เก็บค่าใน session state
     
     if st.button("Login"):
         try:
@@ -49,12 +51,8 @@ def login():
         except Exception as e:
             error_message = str(e)
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")  # แสดงข้อความผิดพลาด
-            
-            # ตรวจสอบว่าข้อผิดพลาดคือการไม่มีอีเมลใน Firebase
-            if 'user-not-found' in error_message:
-                st.warning("อีเมลนี้ไม่มีในระบบ! กรุณา [ลงทะเบียนที่นี่](#signup)")
-                st.session_state.signup = True  # ไปที่หน้า Sign Up อัตโนมัติ
-                st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+            st.warning(f"รายละเอียดเพิ่มเติม: {error_message}")  # แสดงข้อความข้อผิดพลาด
+
 
 
 # ฟังก์ชันสำหรับหน้า Sign Up
@@ -133,16 +131,13 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    if 'is_logged_in' not in st.session_state:
-        st.session_state.is_logged_in = False
-
     if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
-        if st.session_state.get("signup", False):  # ตรวจสอบถ้าต้องการไปที่หน้า Sign Up
+        if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
             sign_up()  # แสดงหน้า Sign Up
         else:
             login()  # แสดงหน้า Login
     else:
-        # สร้าง Navigation Bar
+        # เมนูสำหรับหน้าอื่น ๆ
         st.sidebar.title("เมนู")
         page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
@@ -152,6 +147,7 @@ def main():
             admin()
         elif page == "Chatbot":
             chat()
+
 
 if __name__ == "__main__":
     main()
