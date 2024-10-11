@@ -62,7 +62,7 @@ def login():
                     st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
 
 if st.session_state.get('show_sign_up', False):
-    sign_up_form()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
+    sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
 else:
     login()  # แสดงหน้า login ถ้ายังไม่ได้แสดงฟอร์ม Sign Up
     if st.button("Sign Up"):
