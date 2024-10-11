@@ -9,10 +9,10 @@ def main():
     page = st.sidebar.radio("เลือกหน้า:", ["หน้าอัปโหลด", "Chatbot"])
 
     if page == "หน้าอัปโหลด":
-        from pages.upload import show_upload  # นำเข้าฟังก์ชันจาก upload.py
+        from upload import show_upload  # นำเข้าฟังก์ชันจาก upload.py
         show_upload()
     elif page == "Chatbot":
-        from pages.chat import show_chat  # นำเข้าฟังก์ชันจาก chat.py
+        from chat import show_chat  # นำเข้าฟังก์ชันจาก chat.py
         show_chat()
 
 # ตรวจสอบว่าเป็นการรันสคริปต์โดยตรง
