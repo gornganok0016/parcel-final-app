@@ -8,7 +8,7 @@ from model import read_name_from_image, crop_and_read_names, save_to_csv, count_
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-CSV_FILE = 'D:/POSTOAPP2/backend/names.csv'  # แก้ไขให้ตรงตามพาธไฟล์
+CSV_FILE = 'backend/names.csv'  # แก้ไขให้ตรงตามพาธไฟล์
 
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
