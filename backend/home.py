@@ -53,11 +53,10 @@ def login():
             error_message = str(e)
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
             st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")  # ลบลิงก์ Markdown
-
-                # เพิ่มปุ่มให้ผู้ใช้สามารถลงทะเบียนได้
-                if st.button("Sign Up"):
-                    st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
-                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+             # เพิ่มปุ่มให้ผู้ใช้สามารถลงทะเบียนได้
+            if st.button("Sign Up"):
+                st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
+                st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
 
 
 # ฟังก์ชันสำหรับหน้า Sign Up
