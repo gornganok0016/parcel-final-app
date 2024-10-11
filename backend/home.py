@@ -39,8 +39,8 @@ if 'signup' not in st.session_state:
 def login():
     st.title("Login")
     
-    email = st.text_input("Email", key="email_input")
-    password = st.text_input("Password", type="password", key="password_input")
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
     
     if st.button("Login"):
         try:
@@ -52,16 +52,15 @@ def login():
         except Exception as e:
             error_message = str(e)
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")  # แสดงข้อความผิดพลาด
-
+            
             # ตรวจสอบว่าข้อผิดพลาดคือการไม่มีอีเมลใน Firebase
             if 'user-not-found' in error_message:
-                st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")  # ลบลิงก์ Markdown
-
-                # เพิ่มปุ่มให้ผู้ใช้สามารถลงทะเบียนได้
-            if st.button("Sign Up"):
-                st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
-                st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+                st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")
                 
+                # เพิ่มปุ่มให้ผู้ใช้สามารถลงทะเบียนได้
+                if st.button("Sign Up"):
+                    st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
+                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
 
 
 # ฟังก์ชันสำหรับหน้า Sign Up
@@ -154,7 +153,7 @@ def main():
         else:
             login()  # แสดงหน้า Login
     else:
-        # เมนูสำหรับหน้าอื่น ๆ เมื่อผู้ใช้ล็อกอินสำเร็จ
+        # เมนูสำหรับหน้าอื่น ๆ
         st.sidebar.title("เมนู")
         page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
@@ -164,6 +163,7 @@ def main():
             admin()
         elif page == "Chatbot":
             chat()
+
 
 if __name__ == "__main__":
     main()
