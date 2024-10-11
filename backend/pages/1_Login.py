@@ -37,9 +37,8 @@ def login():
             st.session_state.current_page = "sign_up"
             st.switch_page("pages/2_SignUp")  # สลับไปยังหน้า Sign Up
 
-    if st.button("Sign Up", key="sign_up_button"):  # ใช้ key เพื่อหลีกเลี่ยง ID ซ้ำ
-        st.session_state.current_page = "sign_up"
-        st.switch_page("pages/2_SignUp")  # สลับไปยังหน้า Sign Up
+    if st.button("Sign up"):
+    st.switch_page("pages/2_SignUp.py")
 
 if __name__ == "__main__":
     login()
