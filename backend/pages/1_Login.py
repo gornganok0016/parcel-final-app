@@ -34,6 +34,10 @@ def login():
          st.success("Login สำเร็จ!")
          st.session_state.current_page = "home"  # เปลี่ยนไปยังหน้า Home
          st.switch_page("pages/5_Home.py")  # สลับไปยังหน้า Home
+    elif st.session_state.login_status == "error":
+         st.session_state.current_page = "Sign Up"  # เปลี่ยนไปยังหน้า Home
+         st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Home
+        
     
 if __name__ == "__main__":
     login()
