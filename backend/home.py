@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 import pandas as pd
-from streamlit_option_menu import option_menu
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 import pyrebase
 
@@ -21,9 +20,10 @@ firebaseConfig = {
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-CSV_FILE = 'backend/names.csv'  # แก้ไขให้ตรงตามพาธไฟล์
+CSV_FILE = 'D:/POSTOAPP2/backend/names.csv'  # แก้ไขให้ตรงตามพาธไฟล์
 
-irebase = pyrebase.initialize_app(firebaseConfig)
+# Firebase initialization
+firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 # ฟังก์ชันสำหรับหน้า Login
@@ -55,7 +55,7 @@ def sign_up():
             st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
         except:
             st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-            
+
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
     st.title("หน้าแรก")
@@ -129,6 +129,6 @@ def main():
         admin()
     elif page == "Chatbot":
         chat()
-        
+
 if __name__ == "__main__":
     main()
