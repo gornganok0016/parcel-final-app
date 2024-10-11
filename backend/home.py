@@ -5,14 +5,16 @@ import streamlit as st
     # page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 st.title("Home Page")
 st.write("ยินดีต้อนรับสู่หน้าแรกของแอปพลิเคชัน!")
-if page == "Login":
-    st.switch_page("Login")  # สลับไปที่หน้า Login
-elif page == "Sign Up":
-    st.switch_page("SignUp")  # สลับไปที่หน้า Sign Up
-elif page == "หน้าอัปโหลด":
-    st.switch_page("Admin")  # สลับไปที่หน้า Admin
-elif page == "Chatbot":
-    st.switch_page("Chatbot")  # สลับไปที่หน้า Chatbot
+if "current_page" not in st.session_state:
+        st.session_state.current_page = "login"
+    
+    # ตรวจสอบและเปลี่ยนหน้าตามค่าของ current_page
+if st.session_state.current_page == "login":
+    login()
+elif st.session_state.current_page == "sign_up":
+    sign_up()
+elif st.session_state.current_page == "home":
+    home()
 
 if __name__ == "__main__":
     main()
