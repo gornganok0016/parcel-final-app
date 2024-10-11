@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 
-load_css()
 
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
