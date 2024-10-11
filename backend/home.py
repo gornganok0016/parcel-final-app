@@ -1,6 +1,7 @@
 import streamlit as st
 import os
 import pandas as pd
+from streamlit_option_menu import option_menu
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
@@ -77,6 +78,7 @@ def main():
             icons=["house", "cloud-upload", "chat"],
             menu_icon="cast",
             default_index=0,
+            orientation="horizontal"  # ตั้งค่าการแสดงผลเป็นแนวนอน
         )
 
     if page == "หน้าแรก":
