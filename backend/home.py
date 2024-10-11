@@ -58,15 +58,14 @@ def login():
                 st.warning("อีเมลนี้ไม่มีในระบบ!")
                 st.session_state.show_sign_up = True  # ใช้ตัวแปรสถานะเพื่อแสดงฟอร์ม Sign Up
 
-# แสดงฟอร์ม Sign Up ถ้าค่าตัวแปรสถานะเป็น True
+            # แสดงฟอร์ม Sign Up ถ้าค่าตัวแปรสถานะเป็น True
             if st.session_state.get('show_sign_up', False):
+                sign_up_form()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
+            else:
+                # ถ้าไม่แสดงฟอร์ม Sign Up ให้แสดงหน้า Login ปกติ
+                st.write("ยังไม่มีบัญชี? กดปุ่ม Sign Up เพื่อลงทะเบียน")
                 if st.button("Sign Up"):
-                # เมื่อต้องการลงทะเบียนใหม่ เปลี่ยนสถานะ signup และไม่ใช้ experimental_rerun
-                    st.session_state.signup = True
-                    st.write("กรุณากรอกข้อมูลเพื่อลงทะเบียนใหม่")
-                    st.text_input("Email สำหรับการลงทะเบียน")
-                    st.text_input("Password สำหรับการลงทะเบียน", type="password")
-
+                    st.session_state.show_sign_up = True  # แสดงฟอร์มลงทะเบียน
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
@@ -76,15 +75,19 @@ def sign_up():
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
     
-    if st.button("Sign Up"):
-        try:
-            # ทำการสร้างบัญชีผู้ใช้
-            auth.create_user_with_email_and_password(email, password)
-            st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
-            st.session_state.signup = False  # รีเซ็ตสถานะ signup
-            st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
-        except Exception as e:
-            st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+    if st.button("sign up"):
+        if email and password:
+            try:
+                # ทำการสร้างบัญชีผู้ใช้ใน Firebase
+                auth.create_user_with_email_and_password(email, password)
+                st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
+                st.session_state.signup = False  # รีเซ็ตสถานะ signup
+                st.session_state.show_sign_up = False  # ปิดฟอร์มลงทะเบียน
+                st.experimental_rerun()  # รีเฟรชหน้าเว็บเพื่อกลับไปหน้า Login
+            except Exception as e:
+                st.error(f"ไม่สามารถลงทะเบียนได้: {e}")
+        else:
+            st.warning("กรุณากรอกข้อมูลให้ครบถ้วน")
 
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
