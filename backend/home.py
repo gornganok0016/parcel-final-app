@@ -44,11 +44,11 @@ def login():
             # ทำการล็อกอินผู้ใช้
             user = auth.sign_in_with_email_and_password(email, password)
             st.session_state.is_logged_in = True  # เปลี่ยนสถานะเป็นล็อกอินแล้ว
-            st.success("Login สำเร็จ!")
+            st.success("Login สำเร็จ!")  # แสดงข้อความสำเร็จ
             st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
         except Exception as e:
             error_message = str(e)
-            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")  # แสดงข้อความผิดพลาด
             
             # ตรวจสอบว่าข้อผิดพลาดคือการไม่มีอีเมลใน Firebase
             if 'user-not-found' in error_message:
