@@ -54,15 +54,19 @@ def login():
             # แสดงข้อความผิดพลาดเฉพาะเมื่อเกิดข้อผิดพลาด
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
             
-            if 'user-not-found' in error_message:
+           if 'user-not-found' in error_message:
                 st.warning("อีเมลนี้ไม่มีในระบบ!")
-                st.session_state.show_sign_up = True  # ใช้ตัวแปรสถานะเพื่อแสดงปุ่ม Sign Up
+                st.session_state.show_sign_up = True  # ใช้ตัวแปรสถานะเพื่อแสดงฟอร์ม Sign Up
 
-# แสดงปุ่ม Sign Up ถ้าค่าตัวแปรสถานะเป็น True
-            if st.session_state.get('show_sign_up', False):
-                if st.button("Sign Up"):
-                    st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
-                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+# แสดงฟอร์ม Sign Up ถ้าค่าตัวแปรสถานะเป็น True
+        if st.session_state.get('show_sign_up', False):
+        if st.button("Sign Up"):
+        # เมื่อต้องการลงทะเบียนใหม่ เปลี่ยนสถานะ signup และไม่ใช้ experimental_rerun
+            st.session_state.signup = True
+            st.write("กรุณากรอกข้อมูลเพื่อลงทะเบียนใหม่")
+            st.text_input("Email สำหรับการลงทะเบียน")
+            st.text_input("Password สำหรับการลงทะเบียน", type="password")
+
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
