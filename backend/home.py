@@ -4,8 +4,7 @@ import pandas as pd
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 import pyrebase
 
-if 'unique_id' not in st.session_state:
-    st.session_state.unique_id = 0  # กำหนดค่าเริ่มต้น
+
 
 # Firebase config
 firebaseConfig = {
@@ -19,11 +18,6 @@ firebaseConfig = {
     'measurementId': "G-HL46XMRBKM"
 }
 
-if 'is_logged_in' not in st.session_state:
-        st.session_state.is_logged_in = False
-
-if 'signup' not in st.session_state:
-        st.session_state.signup = False
 
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
 UPLOAD_FOLDER = 'uploads'
@@ -35,68 +29,35 @@ CSV_FILE = 'D:/POSTOAPP2/backend/names.csv'  # แก้ไขให้ตรง
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
-# ฟังก์ชันสำหรับหน้า Login
-# ฟังก์ชันสำหรับหน้า Login
 def login():
     st.title("Login")
     
-    # สร้าง key ที่ไม่ซ้ำกัน
-    email_key = f"login_email_{st.session_state.unique_id}"
-    password_key = f"login_password_{st.session_state.unique_id}"
-    
-    # เพิ่ม key ที่ไม่ซ้ำกันใน text_input แต่ละตัว
-    email = st.text_input("Email", key=email_key)
-    password = st.text_input("Password", type="password", key=password_key)
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
     
     if st.button("Login"):
         try:
             # ทำการล็อกอินผู้ใช้
             user = auth.sign_in_with_email_and_password(email, password)
-            st.session_state.is_logged_in = True  # เปลี่ยนสถานะเป็นล็อกอินแล้ว
-            st.success("Login สำเร็จ!")  # แสดงข้อความสำเร็จ
-            
-            # เริ่มต้นการทำงานใหม่เฉพาะเมื่อล็อกอินสำเร็จ
-            st.experimental_rerun()  
-        except Exception as e:
-            error_message = str(e)
-            # แสดงข้อความผิดพลาดเฉพาะเมื่อเกิดข้อผิดพลาด
+            st.success("Login สำเร็จ!")
+        except:
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-            
-            if 'user-not-found' in error_message:
-                st.warning("อีเมลนี้ไม่มีในระบบ!")
-                if st.button("Sign Up"):  # แสดงปุ่ม Sign Up
-                    st.session_state.show_sign_up = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
-                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
-                    sign_up()
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
     st.title("Sign Up")
-        
-    email_key = f"signup_email_{st.session_state.unique_id}"
-    password_key = f"signup_password_{st.session_state.unique_id}"
     
-    email = st.text_input("Email สำหรับการลงทะเบียน", key=email_key)
-    password = st.text_input("Password สำหรับการลงทะเบียน", type="password", key=password_key)
+    email = st.text_input("Email")
+    password = st.text_input("Password", type="password")
+    
+    if st.button("Sign Up"):
+        try:
+            # ทำการสร้างบัญชีผู้ใช้
+            auth.create_user_with_email_and_password(email, password)
+            st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
+        except:
+            st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
 
-    if st.button("ยืนยันการลงทะเบียน"):
-        if email and password:
-            try:
-                # ทำการสร้างบัญชีผู้ใช้ใน Firebase
-                auth.create_user_with_email_and_password(email, password)
-                st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
-                st.session_state.show_sign_up = False  # ปิดฟอร์มลงทะเบียน
-                st.experimental_rerun()  # รีเฟรชหน้าเว็บเพื่อกลับไปหน้า Login
-            except Exception as e:
-                st.error(f"ไม่สามารถลงทะเบียนได้: {e}")
-        else:
-            st.warning("กรุณากรอกข้อมูลให้ครบถ้วน")
-
-# เช็คสถานะเพื่อแสดงหน้า Login หรือ Sign Up
-if st.session_state.get('show_sign_up', False):
-    sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
-else:
-    login()  # แสดงหน้า login ถ้ายังไม่ได้แสดงฟอร์ม Sign Up
 
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
@@ -158,22 +119,21 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
-        if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
-            sign_up()  # แสดงหน้า Sign Up
-        else:
-            login()  # แสดงหน้า Login
-    else:
-        # เมนูสำหรับหน้าอื่น ๆ
-        st.sidebar.title("เมนู")
-        page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+     st.sidebar.title("เมนู")
 
-        if page == "หน้าแรก":
-            home()
-        elif page == "หน้าอัปโหลด":
-            admin()
-        elif page == "Chatbot":
-            chat()
+    # สร้างตัวแปรเพื่อเก็บสถานะของหน้า
+     page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+
+     if page == "Login":
+        login()
+     elif page == "Sign Up":
+        sign_up()
+     elif page == "หน้าแรก":
+        home()
+     elif page == "หน้าอัปโหลด":
+        admin()
+     elif page == "Chatbot":
+        chat()
 
 if __name__ == "__main__":
     main()
