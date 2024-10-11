@@ -3,7 +3,8 @@ import streamlit as st
 # def main():
     # st.sidebar.title("เมนู")
     # page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
-
+st.title("Home Page")
+st.write("ยินดีต้อนรับสู่หน้าแรกของแอปพลิเคชัน!")
 if page == "Login":
     st.switch_page("Login")  # สลับไปที่หน้า Login
 elif page == "Sign Up":
@@ -15,5 +16,5 @@ elif page == "หน้าอัปโหลด":
 elif page == "Chatbot":
     st.switch_page("Chatbot")  # สลับไปที่หน้า Chatbot
 
-# if __name__ == "__main__":
-#     main()
+ if __name__ == "__main__":
+     main()
