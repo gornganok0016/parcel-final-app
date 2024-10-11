@@ -37,8 +37,9 @@ auth = firebase.auth()
 def login():
     st.title("Login")
     
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
+    # เพิ่ม key ที่ไม่ซ้ำกันใน text_input แต่ละตัว
+    email = st.text_input("Email", key="login_email")
+    password = st.text_input("Password", type="password", key="login_password")
     
     if st.button("Login"):
         try:
@@ -56,16 +57,10 @@ def login():
             
             if 'user-not-found' in error_message:
                 st.warning("อีเมลนี้ไม่มีในระบบ!")
-                st.session_state.show_sign_up = True  # ใช้ตัวแปรสถานะเพื่อแสดงฟอร์ม Sign Up
+                if st.button("Sign Up"):  # แสดงปุ่ม Sign Up
+                    st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
+                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
 
-            # แสดงฟอร์ม Sign Up ถ้าค่าตัวแปรสถานะเป็น True
-            if st.session_state.get('show_sign_up', False):
-                sign_up_form()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
-            else:
-                # ถ้าไม่แสดงฟอร์ม Sign Up ให้แสดงหน้า Login ปกติ
-                st.write("ยังไม่มีบัญชี? กดปุ่ม Sign Up เพื่อลงทะเบียน")
-                if st.button("Sign Up"):
-                    st.session_state.show_sign_up = True  # แสดงฟอร์มลงทะเบียน
 if st.session_state.get('show_sign_up', False):
     sign_up_form()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
 else:
@@ -78,22 +73,22 @@ def sign_up():
 
     st.title("Sign Up")
         
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
-    
-    if email and password:
-        try:
+    email = st.text_input("Email สำหรับการลงทะเบียน", key="signup_email")
+    password = st.text_input("Password สำหรับการลงทะเบียน", type="password", key="signup_password")
+
+    if st.button("ยืนยันการลงทะเบียน"):
+        if email and password:
+            try:
                 # ทำการสร้างบัญชีผู้ใช้ใน Firebase
-            auth.create_user_with_email_and_password(email, password)
-            st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
-                # รีเซ็ตสถานะการแสดงฟอร์มลงทะเบียนหลังจากลงทะเบียนสำเร็จ
-            st.session_state.signup = False  
-            st.session_state.is_logged_in = False  # ยังคงไม่ล็อกอินหลังการลงทะเบียน
-            st.session_state.show_sign_up = False  # ปิดฟอร์มลงทะเบียน
-        except Exception as e:
-            st.error(f"ไม่สามารถลงทะเบียนได้: {e}")
-    else:
-        st.warning("กรุณากรอกข้อมูลให้ครบถ้วน")
+                auth.create_user_with_email_and_password(email, password)
+                st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
+                st.session_state.signup = False  # รีเซ็ตสถานะ signup
+                st.session_state.show_sign_up = False  # ปิดฟอร์มลงทะเบียน
+                st.experimental_rerun()  # รีเฟรชหน้าเว็บเพื่อกลับไปหน้า Login
+            except Exception as e:
+                st.error(f"ไม่สามารถลงทะเบียนได้: {e}")
+        else:
+            st.warning("กรุณากรอกข้อมูลให้ครบถ้วน")
 
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
