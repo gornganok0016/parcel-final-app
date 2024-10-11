@@ -71,15 +71,7 @@ def check_question_in_csv(question):
 # ฟังก์ชันหลัก
 def main():
     # สร้าง Navigation Bar
-    with st.sidebar:
-        page = option_menu(
-            "เมนู",
-            ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"],
-            icons=["house", "cloud-upload", "chat"],
-            menu_icon="cast",
-            default_index=0,
-            orientation="horizontal"  # ตั้งค่าการแสดงผลเป็นแนวนอน
-        )
+   page = st.selectbox("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
     if page == "หน้าแรก":
         home()
