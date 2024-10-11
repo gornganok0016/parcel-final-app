@@ -31,15 +31,15 @@ def login():
             user = auth.sign_in_with_email_and_password(email, password)
             st.success("Login สำเร็จ!")
             st.session_state.current_page = "home"
-            st.switch_page("3_Home")  # สลับไปยังหน้า Home
+            st.switch_page("pages/3_Home")  # สลับไปยังหน้า Home
         except Exception as e:
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
             st.session_state.current_page = "sign_up"
-            st.switch_page("2_SignUp")  # สลับไปยังหน้า Sign Up
+            st.switch_page("pages/2_SignUp")  # สลับไปยังหน้า Sign Up
 
     if st.button("Sign Up", key="sign_up_button"):  # ใช้ key เพื่อหลีกเลี่ยง ID ซ้ำ
         st.session_state.current_page = "sign_up"
-        st.switch_page("2_SignUp")  # สลับไปยังหน้า Sign Up
+        st.switch_page("pages/2_SignUp")  # สลับไปยังหน้า Sign Up
 
 if __name__ == "__main__":
     login()
