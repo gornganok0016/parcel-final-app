@@ -69,7 +69,7 @@ def sign_up():
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
     
-     if st.button("Sign Up"):
+    if st.button("Sign Up"):
         try:
             # ทำการสร้างบัญชีผู้ใช้
             auth.create_user_with_email_and_password(email, password)
