@@ -9,7 +9,7 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 CSV_FILE = 'backend/names.csv'  # แก้ไขให้ตรงตามพาธไฟล์
 
-def show_upload():
+def upload():
     st.title("หน้าอัปโหลด")
     uploaded_file = st.file_uploader("อัปโหลดไฟล์", type=['jpg', 'png'])
     
@@ -33,3 +33,4 @@ def show_upload():
             st.write("Name Counts: ", count_names_in_csv().to_dict(orient='records'))
         else:
             st.warning("ไม่พบชื่อในภาพ")
+
