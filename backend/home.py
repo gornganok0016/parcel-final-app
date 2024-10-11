@@ -42,13 +42,14 @@ def login():
             st.session_state.is_logged_in = True  # บันทึกสถานะล็อกอิน
             st.success("Login สำเร็จ!")
             st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
-        except:
-            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+        except Exception as e:
+            st.error(f"Login ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
 
     # ปุ่มไปยังหน้าลงทะเบียน
     if st.button("Sign Up"):
         st.session_state.show_sign_up = True  # เปลี่ยนสถานะไปที่ Sign Up
         st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
     st.title("Sign Up")
@@ -63,9 +64,8 @@ def sign_up():
             st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
             st.session_state.show_sign_up = False  # ปิดฟอร์มลงทะเบียน
             st.experimental_rerun()  # รีเฟรชหน้าเว็บเพื่อกลับไปหน้า Login
-        except:
-            st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-
+        except Exception as e:
+            st.error(f"Sign Up ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
 
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
