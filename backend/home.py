@@ -70,12 +70,13 @@ def login():
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
 
-    st.title("Sign Up")
+    if st.button("Sign Up"):
+        st.title("Sign Up")
+        
+        email = st.text_input("Email")
+        password = st.text_input("Password", type="password")
     
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
     
-    if st.button("sign up"):
         if email and password:
             try:
                 # ทำการสร้างบัญชีผู้ใช้ใน Firebase
