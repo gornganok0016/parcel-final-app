@@ -20,6 +20,11 @@ auth = firebase.auth()
 
 def login():
     st.title("Login")
+
+    if "login_status" not in st.session_state:
+        st.session_state.login_status = None  # ตั้งค่าเริ่มต้นเป็น None
+
+    
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
     
