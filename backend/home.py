@@ -98,9 +98,9 @@ def sign_up():
 if 'show_sign_up' not in st.session_state:
      st.session_state.show_sign_up = False  # สร้างตัวแปรสถานะสำหรับแสดงฟอร์ม Sign Up
 
- if st.session_state.show_sign_up:
+if st.session_state.show_sign_up:
      sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
- else:
+else:
      login()  # แสดงหน้า login
 
 # ฟังก์ชันสำหรับหน้าแรก
