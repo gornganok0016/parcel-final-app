@@ -4,6 +4,10 @@ import pandas as pd
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 import pyrebase
 
+ if 'is_logged_in' not in st.session_state:
+        st.session_state.is_logged_in = False
+    if 'show_sign_up' not in st.session_state:
+        st.session_state.show_sign_up = False
 
 
 # Firebase config
@@ -46,8 +50,7 @@ def login():
             st.error(f"Login ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
     if st.button("Sign Up"):
             st.session_state.show_sign_up = True  # เปลี่ยนสถานะไปที่ Sign Up
-            st.rerun()  # เริ่มต้นการทำงานใหม่
-
+        
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
