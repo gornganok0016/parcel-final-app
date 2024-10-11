@@ -41,25 +41,25 @@ def login():
     password = st.text_input("Password", type="password")
     
     if st.button("Login"):
-    try:
-        # ทำการล็อกอินผู้ใช้
-        user = auth.sign_in_with_email_and_password(email, password)
-        st.session_state.is_logged_in = True  # เปลี่ยนสถานะเป็นล็อกอินแล้ว
-        st.success("Login สำเร็จ!")  # แสดงข้อความสำเร็จ
-        
-        # เริ่มต้นการทำงานใหม่เฉพาะเมื่อล็อกอินสำเร็จ
-        st.experimental_rerun()  
-    except Exception as e:
-        error_message = str(e)
-        # แสดงข้อความผิดพลาดเฉพาะเมื่อเกิดข้อผิดพลาด
-        st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-        
-        if 'user-not-found' in error_message:
-            st.warning("อีเมลนี้ไม่มีในระบบ!")
-            # แสดงปุ่ม Sign Up
-            if st.button("Sign Up"):
-                st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
-                st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+        try:
+            # ทำการล็อกอินผู้ใช้
+            user = auth.sign_in_with_email_and_password(email, password)
+            st.session_state.is_logged_in = True  # เปลี่ยนสถานะเป็นล็อกอินแล้ว
+            st.success("Login สำเร็จ!")  # แสดงข้อความสำเร็จ
+            
+            # เริ่มต้นการทำงานใหม่เฉพาะเมื่อล็อกอินสำเร็จ
+            st.experimental_rerun()  
+        except Exception as e:
+            error_message = str(e)
+            # แสดงข้อความผิดพลาดเฉพาะเมื่อเกิดข้อผิดพลาด
+            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+            
+            if 'user-not-found' in error_message:
+                st.warning("อีเมลนี้ไม่มีในระบบ!")
+                # แสดงปุ่ม Sign Up
+                if st.button("Sign Up"):
+                    st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
+                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
