@@ -142,6 +142,9 @@ def main():
     if 'signup' not in st.session_state:
         st.session_state.signup = False
 
+    if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
+            sign_up()  # แสดงหน้า Sign Up
+
     if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
         if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
             sign_up()  # แสดงหน้า Sign Up
