@@ -142,7 +142,7 @@ def main():
             sign_up()  # แสดงหน้า Sign Up
         else:
             login()  # แสดงหน้า Login
-        else:
+     else:
         # เมนูสำหรับหน้าอื่น ๆ
         st.sidebar.title("เมนู")
         page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
