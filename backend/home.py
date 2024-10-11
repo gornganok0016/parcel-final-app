@@ -52,6 +52,7 @@ def login():
             auth.sign_in_with_email_and_password(email, password)
             st.success("Login สำเร็จ!")
             return "home"  # เปลี่ยนหน้าไปยังหน้าแรก
+            st.rerun()
         except Exception as e:
             st.error(f"Login ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
 
@@ -72,6 +73,7 @@ def sign_up():
             auth.create_user_with_email_and_password(email, password)
             st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
             st.session_state.current_page = "login"  # เปลี่ยนหน้าไปยังหน้า Login
+            st.rerun()
         except Exception as e:
             st.error(f"Sign Up ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
 # ฟังก์ชันสำหรับหน้าแรก
