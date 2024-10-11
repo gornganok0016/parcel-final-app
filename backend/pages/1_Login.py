@@ -30,7 +30,7 @@ def login():
         except:
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
 
-     if st.session_state.login_status == "success":
+    if st.session_state.login_status == "success":
          st.success("Login สำเร็จ!")
          st.session_state.current_page = "home"  # เปลี่ยนไปยังหน้า Home
          st.switch_page("5_Home")  # สลับไปยังหน้า Home
