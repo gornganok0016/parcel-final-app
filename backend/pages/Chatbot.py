@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from streamlit_chat import message
-
+import os
 
 # กำหนดค่าเริ่มต้นสำหรับ messages
 st.session_state.setdefault('past', [])
