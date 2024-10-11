@@ -26,24 +26,17 @@ def login():
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
 
-    if "login_status" not in st.session_state:
-        st.session_state.login_status = None
-
     if st.button("Login"):
         try:
             user = auth.sign_in_with_email_and_password(email, password)
-            st.session_state.login_status = "success"
+            st.success("Login สำเร็จ!")
             st.session_state.current_page = "home"
             st.switch_page("pages/3_Home.py")  # สลับไปยังหน้า Home
         except Exception as e:
-            st.session_state.login_status = "error"
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
             st.session_state.current_page = "Sign Up"
             st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Sign Up
 
-    # แสดงผลข้อความตามสถานะ
-    if st.session_state.login_status == "success":
-        st.success("เข้าสู่ระบบสำเร็จ!")
     
     if st.button("Sign Up"):
         st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Sign Up
