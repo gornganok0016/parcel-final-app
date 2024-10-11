@@ -4,3 +4,5 @@ opencv-python
 Pillow
 pandas
 roboflow
+opencv-python-headless
+
