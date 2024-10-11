@@ -19,7 +19,6 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 def login():
-    
     st.title("Login")
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
@@ -28,13 +27,9 @@ def login():
         try:
             user = auth.sign_in_with_email_and_password(email, password)
             st.success("Login สำเร็จ!")
-            st.session_state.current_page = "home"
-            st.switch_page("pages/5_Home.py")  # สลับไปยังหน้า Home
+            st.switch_page("pages/5_Home.py")  # สลับไปยังหน้า Sign Up
         except:
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-            st.session_state.current_page = "Sign Up"
-            st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Sign Up
-
     if st.button("Sign Up"):
         st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Sign Up
         
