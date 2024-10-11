@@ -128,10 +128,12 @@ def check_question_in_csv(question):
 # ฟังก์ชันหลัก
 def main():
     st.sidebar.title("เมนู")
-
-    # ตรวจสอบสถานะการล็อกอิน
+# ตรวจสอบสถานะการล็อกอิน
     if 'is_logged_in' not in st.session_state:
         st.session_state.is_logged_in = False
+    if 'show_sign_up' not in st.session_state:
+        st.session_state.show_sign_up = False
+
 
     if st.session_state.is_logged_in:
         # ถ้าผู้ใช้ล็อกอินแล้ว
