@@ -28,7 +28,7 @@ def login():
             user = auth.sign_in_with_email_and_password(email, password)
             st.success("Login สำเร็จ!")
             st.session_state.current_page = "home"
-            st.switch_page("pages/3_Home.py")  # สลับไปยังหน้า Home
+            st.switch_page("pages/5_Home.py")  # สลับไปยังหน้า Home
         except:
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
             st.session_state.current_page = "Sign Up"
