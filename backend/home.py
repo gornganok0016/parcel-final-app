@@ -149,12 +149,16 @@ def main():
             admin()
         elif page == "Chatbot":
             chat()
-    else:
+   else:
         # ถ้ายังไม่ได้ล็อกอิน
-        if st.session_state.show_sign_up:
-            sign_up()  # แสดงฟอร์ม Sign Up
-        else:
-            login()  # แสดงฟอร์ม Login
+        page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up"])
+        
+        if page == "Login":
+            login()
+            if st.session_state.show_sign_up:
+                   sign_up()  # แสดงฟอร์ม Sign Up  
+        elif page == "Sign Up":
+            sign_up()
 
 if __name__ == "__main__":
     main()
