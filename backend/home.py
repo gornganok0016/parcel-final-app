@@ -58,9 +58,9 @@ def login():
                 st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")  # ลบลิงก์ Markdown
 
                 # เพิ่มปุ่มให้ผู้ใช้สามารถลงทะเบียนได้
-                if st.button("Sign Up"):
-                    st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
-                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+            if st.button("Sign Up"):
+                st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
+                st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
                 
 
 
