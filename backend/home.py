@@ -33,6 +33,9 @@ CSV_FILE = 'D:/POSTOAPP2/backend/names.csv'  # แก้ไขให้ตรง
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
+current_page = "login"
+
+# ฟังก์ชันสำหรับหน้า Login
 def login():
     st.title("Login")
     
@@ -42,16 +45,15 @@ def login():
     if st.button("Login"):
         try:
             # ทำการล็อกอินผู้ใช้
-            user = auth.sign_in_with_email_and_password(email, password)
-            st.session_state.is_logged_in = True  # บันทึกสถานะล็อกอิน
+            auth.sign_in_with_email_and_password(email, password)
             st.success("Login สำเร็จ!")
-            st.rerun()  # เริ่มต้นการทำงานใหม่
+            return "home"  # เปลี่ยนหน้าไปยังหน้าแรก
         except Exception as e:
             st.error(f"Login ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
-            if st.button("Sign Up"):
-                   st.session_state.show_sign_up = True  # เปลี่ยนสถานะไปที่ Sign Up
-                   st.rerun()  # เริ่มต้นการทำงานใหม่
-        
+
+    # ปุ่มไปยังหน้าลงทะเบียน
+    if st.button("Sign Up"):
+        return "sign_up"  # เปลี่ยนหน้าไปยังหน้าลงทะเบียน
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
@@ -65,11 +67,9 @@ def sign_up():
             # ทำการสร้างบัญชีผู้ใช้
             auth.create_user_with_email_and_password(email, password)
             st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
-            st.session_state.show_sign_up = False  # ปิดฟอร์มลงทะเบียน
-            st.rerun()  # รีเฟรชหน้าเว็บเพื่อกลับไปหน้า Login
+            return "login"  # เปลี่ยนหน้าไปยังหน้า Login
         except Exception as e:
             st.error(f"Sign Up ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
-
 
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
