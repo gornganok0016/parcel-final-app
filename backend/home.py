@@ -151,12 +151,10 @@ def main():
             chat()
     else:
         # ถ้ายังไม่ได้ล็อกอิน
-        page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up"])
-        
-        if page == "Login":
-            login()
-        elif page == "Sign Up":
-            sign_up()
+        if st.session_state.show_sign_up:
+            sign_up()  # แสดงฟอร์ม Sign Up
+        else:
+            login()  # แสดงฟอร์ม Login
 
 if __name__ == "__main__":
     main()
