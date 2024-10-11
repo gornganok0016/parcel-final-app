@@ -53,9 +53,7 @@ def login():
             # ตรวจสอบว่าข้อผิดพลาดคือการไม่มีอีเมลใน Firebase
             if 'user-not-found' in error_message:
                 st.warning("อีเมลนี้ไม่มีในระบบ! กรุณา [ลงทะเบียนที่นี่](#signup)")
-                if st.button("Sign Up"):
-                    st.session_state.signup = True  # ตั้งค่าให้ไปที่หน้า Sign Up
-                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
     st.title("Sign Up")
@@ -133,7 +131,6 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-    # ตรวจสอบให้แน่ใจว่า st.session_state มีการตั้งค่าเริ่มต้น
     if 'is_logged_in' not in st.session_state:
         st.session_state.is_logged_in = False
 
