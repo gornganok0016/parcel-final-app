@@ -60,12 +60,12 @@ def login():
 
 # แสดงฟอร์ม Sign Up ถ้าค่าตัวแปรสถานะเป็น True
             if st.session_state.get('show_sign_up', False):
-            if st.button("Sign Up"):
-            # เมื่อต้องการลงทะเบียนใหม่ เปลี่ยนสถานะ signup และไม่ใช้ experimental_rerun
-                st.session_state.signup = True
-                st.write("กรุณากรอกข้อมูลเพื่อลงทะเบียนใหม่")
-                st.text_input("Email สำหรับการลงทะเบียน")
-                st.text_input("Password สำหรับการลงทะเบียน", type="password")
+                if st.button("Sign Up"):
+                # เมื่อต้องการลงทะเบียนใหม่ เปลี่ยนสถานะ signup และไม่ใช้ experimental_rerun
+                    st.session_state.signup = True
+                    st.write("กรุณากรอกข้อมูลเพื่อลงทะเบียนใหม่")
+                    st.text_input("Email สำหรับการลงทะเบียน")
+                    st.text_input("Password สำหรับการลงทะเบียน", type="password")
 
 
 # ฟังก์ชันสำหรับหน้า Sign Up
