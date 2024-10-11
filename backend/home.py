@@ -20,7 +20,7 @@ firebaseConfig = {
 if 'is_logged_in' not in st.session_state:
         st.session_state.is_logged_in = False
 
-    if 'signup' not in st.session_state:
+if 'signup' not in st.session_state:
         st.session_state.signup = False
 
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
