@@ -64,12 +64,12 @@ def login():
                     st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
                     st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
 
-    if st.session_state.get('show_sign_up', False):
-        sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
-    else:
-        login()  # แสดงหน้า login ถ้ายังไม่ได้แสดงฟอร์ม Sign Up
-        if st.button("Sign Up"):
-            st.session_state.show_sign_up = True  # แสดงฟอร์มลงทะเบียน
+    # if st.session_state.get('show_sign_up', False):
+    #     sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
+    # else:
+    #     login()  # แสดงหน้า login ถ้ายังไม่ได้แสดงฟอร์ม Sign Up
+    #     if st.button("Sign Up"):
+    #         st.session_state.show_sign_up = True  # แสดงฟอร์มลงทะเบียน
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
@@ -95,13 +95,13 @@ def sign_up():
 
 
 # เริ่มต้นโปรแกรม
-# if 'show_sign_up' not in st.session_state:
-#     st.session_state.show_sign_up = False  # สร้างตัวแปรสถานะสำหรับแสดงฟอร์ม Sign Up
+if 'show_sign_up' not in st.session_state:
+     st.session_state.show_sign_up = False  # สร้างตัวแปรสถานะสำหรับแสดงฟอร์ม Sign Up
 
-# if st.session_state.show_sign_up:
-#     sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
-# else:
-#     login()  # แสดงหน้า login
+ if st.session_state.show_sign_up:
+     sign_up()  # เรียกฟังก์ชันแสดงฟอร์มลงทะเบียน
+ else:
+     login()  # แสดงหน้า login
 
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
