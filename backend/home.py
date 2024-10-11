@@ -142,11 +142,10 @@ def main():
         st.session_state.signup = False
 
     # เรียกใช้ฟังก์ชัน login หรือ sign_up
-    if not st.session_state.is_logged_in:
-        if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
-            sign_up()  # แสดงหน้า Sign Up
-        else:
-            login()  # แสดงหน้า Login
+    if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
+        sign_up()  # แสดงหน้า Sign Up
+    else:
+        login()  # แสดงหน้า Login
     else:
         # เมนูสำหรับหน้าอื่น ๆ
         st.sidebar.title("เมนู")
