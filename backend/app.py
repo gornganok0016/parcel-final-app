@@ -16,5 +16,5 @@ def main():
     #     from pages.chat import show_chat  # นำเข้าฟังก์ชันจาก chat.py
     #     show_chat()
 
-if __name__ == "__main__":
+    if __name__ == "__main__":
     main()
