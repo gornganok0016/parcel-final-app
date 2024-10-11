@@ -52,15 +52,15 @@ def login():
         except Exception as e:
             error_message = str(e)
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")  # แสดงข้อความผิดพลาด
-            
+
             # ตรวจสอบว่าข้อผิดพลาดคือการไม่มีอีเมลใน Firebase
             if 'user-not-found' in error_message:
-                st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")
-                
-            # เพิ่มปุ่มให้ผู้ใช้สามารถลงทะเบียนได้
-            if st.button("Sign Up"):
-                st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
-                st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+                st.warning("อีเมลนี้ไม่มีในระบบ! กรุณาลงทะเบียนที่นี่")  # ลบลิงก์ Markdown
+
+                # เพิ่มปุ่มให้ผู้ใช้สามารถลงทะเบียนได้
+                if st.button("Sign Up"):
+                    st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
+                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
                 
 
 
