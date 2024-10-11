@@ -33,7 +33,6 @@ st.markdown(
     .css-1y4p2ps {
         color: #2C3E50; /* สีตัวอักษร */
     }
-  
     </style>
     """,
     unsafe_allow_html=True
@@ -61,8 +60,12 @@ CSV_FILE = 'D:/POSTOAPP2/backend/names.csv'  # แก้ไขให้ตรง
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
+# ตัวแปรเพื่อเก็บสถานะการเข้าสู่ระบบ
+is_logged_in = False
+
 # ฟังก์ชันสำหรับหน้า Login
 def login():
+    global is_logged_in  # แก้ไขสถานะการเข้าสู่ระบบได้
     st.title("Login")
     
     email = st.text_input("Email")
@@ -72,7 +75,9 @@ def login():
         try:
             # ทำการล็อกอินผู้ใช้
             user = auth.sign_in_with_email_and_password(email, password)
+            is_logged_in = True  # เปลี่ยนสถานะเป็นล็อกอินแล้ว
             st.success("Login สำเร็จ!")
+            st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
         except:
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
 
@@ -151,23 +156,21 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-     st.sidebar.title("เมนู")
+    global is_logged_in  # ใช้ตัวแปรสถานะล็อกอิน
 
-    # สร้างตัวแปรเพื่อเก็บสถานะของหน้า
-     page = st.sidebar.radio("เลือกหน้า:", ["Login", "Sign Up", "หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
+    if not is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
+        login()  # แสดงหน้า Login
+    else:
+        # สร้าง Navigation Bar
+        st.sidebar.title("เมนู")
+        page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
 
-     if page == "Login":
-        login()
-     elif page == "Sign Up":
-        sign_up()
-     elif page == "หน้าแรก":
-        home()
-     elif page == "หน้าอัปโหลด":
-        admin()
-     elif page == "Chatbot":
-        chat()
-
-
+        if page == "หน้าแรก":
+            home()
+        elif page == "หน้าอัปโหลด":
+            admin()
+        elif page == "Chatbot":
+            chat()
 
 if __name__ == "__main__":
     main()
