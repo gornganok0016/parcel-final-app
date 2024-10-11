@@ -6,4 +6,4 @@ roboflow
 streamlit-option-menu
 streamlit
 opencv-python-headless
-
+pyrebase4
