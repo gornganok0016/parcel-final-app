@@ -91,7 +91,7 @@ def main():
         </style>
         <div class="navbar">
             <a href="#" onclick="window.location.reload(); st.session_state['page'] = 'home';">หน้าแรก</a>
-            <a href="#" onclick="window.location.reload(); st.session_state['page'] = 'upload';">หน้าอัปโหลด</a>
+            <a href="#" onclick="window.location.reload(); st.session_state['page'] = 'admin';">หน้าอัปโหลด</a>
             <a href="#" onclick="window.location.reload(); st.session_state['page'] = 'chat';">Chatbot</a>
         </div>
     """, unsafe_allow_html=True)
