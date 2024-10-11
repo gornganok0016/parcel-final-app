@@ -21,18 +21,18 @@ firebaseConfig = {
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
-def sign_up():
-    st.title("Sign Up")
-    email = st.text_input("Email")
-    password = st.text_input("Password", type="password")
+# def sign_up():
+st.title("Sign Up")
+email = st.text_input("Email")
+password = st.text_input("Password", type="password")
       
-    if st.button("Sign Up"):
-         try:
-            auth.create_user_with_email_and_password(email, password)
-            st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
-            st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Login
-         except:
-            st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+if st.button("Sign Up"):
+    try:
+        auth.create_user_with_email_and_password(email, password)
+        st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
+        st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Login
+    except:
+        st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
              
-if __name__ == "__main__":
-    sign_up()
+# if __name__ == "__main__":
+#     sign_up()
