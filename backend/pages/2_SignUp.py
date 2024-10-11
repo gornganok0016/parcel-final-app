@@ -23,16 +23,22 @@ auth = firebase.auth()
 
 def sign_up():
     st.title("Sign Up")
+
+     if "signup_status" not in st.session_state:
+        st.session_state.signup_status = None  # ตั้งค่าเริ่มต้นเป็น None
+
+    
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
     
     if st.button("Sign Up"):
         try:
             auth.create_user_with_email_and_password(email, password)
+            st.session_state.signup_status = "success"
         except:
             st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
             
-    if st.session_state.login_status == "success":
+    if st.session_state.signup_status = "success":
          st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
          st.session_state.current_page = "login"  # เปลี่ยนไปยังหน้า Home
          st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Login
