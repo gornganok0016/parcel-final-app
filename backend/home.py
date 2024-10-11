@@ -56,7 +56,6 @@ def login():
                 if st.button("Sign Up"):
                     st.session_state.signup = True  # ตั้งค่าให้ไปที่หน้า Sign Up
                     st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
-
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
     st.title("Sign Up")
@@ -134,8 +133,12 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
+    # ตรวจสอบให้แน่ใจว่า st.session_state มีการตั้งค่าเริ่มต้น
+    if 'is_logged_in' not in st.session_state:
+        st.session_state.is_logged_in = False
+
     if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
-        if st.session_state.signup:  # ตรวจสอบถ้าต้องการไปที่หน้า Sign Up
+        if st.session_state.get("signup", False):  # ตรวจสอบถ้าต้องการไปที่หน้า Sign Up
             sign_up()  # แสดงหน้า Sign Up
         else:
             login()  # แสดงหน้า Login
