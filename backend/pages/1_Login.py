@@ -30,12 +30,18 @@ def login():
        try:
             user = auth.sign_in_with_email_and_password(email, password)
             st.success("Login สำเร็จ!")
+            st.session_state.sign_up_status = "success"
             st.session_state.current_page = "home"
             st.switch_page("pages/3_Home.py")  # สลับไปยังหน้า Home
        except Exception as e:
-            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+            st.session_state.sign_up_status = "error"
             st.session_state.current_page = "sign_up"
             st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Sign Up
+
+    if st.session_state.sign_up_status == "success":
+        st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
+    elif st.session_state.sign_up_status == "error":
+        st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
 
     if st.button("Sign up"):
         st.switch_page("pages/2_SignUp.py")
