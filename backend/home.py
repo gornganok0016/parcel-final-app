@@ -46,7 +46,7 @@ def login():
             st.error(f"Login ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
             st.session_state.show_sign_up = True
             st.button("Sign Up"):
-            sign_up()
+                sign_up()
             # st.rerun()  # เริ่มต้นการทำงานใหม่
 
 # ฟังก์ชันสำหรับหน้า Sign Up
