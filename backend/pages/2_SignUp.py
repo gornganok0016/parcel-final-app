@@ -38,7 +38,7 @@ def sign_up():
         except:
             st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
             
-    if st.session_state.signup_status = "success":
+    if st.session_state.signup_status == "success":
          st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
          st.session_state.current_page = "login"  # เปลี่ยนไปยังหน้า Home
          st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Login
