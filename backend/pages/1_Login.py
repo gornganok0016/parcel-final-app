@@ -27,7 +27,7 @@ def login():
     password = st.text_input("Password", type="password")
 
     if st.button("Login"):
-        try:
+       try:
             user = auth.sign_in_with_email_and_password(email, password)
             st.success("Login สำเร็จ!")
             st.session_state.current_page = "home"
