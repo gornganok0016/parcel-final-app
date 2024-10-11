@@ -41,24 +41,26 @@ def login():
     password = st.text_input("Password", type="password")
     
     if st.button("Login"):
-        try:
-            # ทำการล็อกอินผู้ใช้
-            user = auth.sign_in_with_email_and_password(email, password)
-            st.session_state.is_logged_in = True  # เปลี่ยนสถานะเป็นล็อกอินแล้ว
-            st.success("Login สำเร็จ!")  # แสดงข้อความสำเร็จ
-            
-            # เริ่มต้นการทำงานใหม่เฉพาะเมื่อล็อกอินสำเร็จ
-            st.experimental_rerun()  
-        except Exception as e:
-            error_message = str(e)
-            # แสดงข้อความผิดพลาดเฉพาะเมื่อเกิดข้อผิดพลาด
-            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-            
-            if 'user-not-found' in error_message:
-                st.warning("อีเมลนี้ไม่มีในระบบ!")
-                if st.button("Sign Up"):  # แสดงปุ่ม Sign Up
-                    st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
-                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+    try:
+        # ทำการล็อกอินผู้ใช้
+        user = auth.sign_in_with_email_and_password(email, password)
+        st.session_state.is_logged_in = True  # เปลี่ยนสถานะเป็นล็อกอินแล้ว
+        st.success("Login สำเร็จ!")  # แสดงข้อความสำเร็จ
+        
+        # เริ่มต้นการทำงานใหม่เฉพาะเมื่อล็อกอินสำเร็จ
+        st.experimental_rerun()  
+    except Exception as e:
+        error_message = str(e)
+        # แสดงข้อความผิดพลาดเฉพาะเมื่อเกิดข้อผิดพลาด
+        st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+        
+        if 'user-not-found' in error_message:
+            st.warning("อีเมลนี้ไม่มีในระบบ!")
+            # แสดงปุ่ม Sign Up
+            if st.button("Sign Up"):
+                st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
+                st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
 
@@ -137,12 +139,12 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
-     if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
+    if not st.session_state.is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
         if st.session_state.signup:  # ถ้าต้องการไปที่หน้า Sign Up
             sign_up()  # แสดงหน้า Sign Up
         else:
             login()  # แสดงหน้า Login
-     else:
+    else:
         # เมนูสำหรับหน้าอื่น ๆ
         st.sidebar.title("เมนู")
         page = st.sidebar.radio("เลือกหน้า:", ["หน้าแรก", "หน้าอัปโหลด", "Chatbot"])
@@ -153,7 +155,6 @@ def main():
             admin()
         elif page == "Chatbot":
             chat()
-
 
 if __name__ == "__main__":
     main()
