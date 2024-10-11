@@ -17,6 +17,9 @@ firebaseConfig = {
     'measurementId': "G-HL46XMRBKM"
 }
 
+firebase = pyrebase.initialize_app(config)
+auth = firebase.auth()
+
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -38,20 +41,24 @@ if 'signup' not in st.session_state:
 def login():
     st.title("Login")
     
-    email = st.text_input("Email", key="email_input")  # เก็บค่าใน session state
-    password = st.text_input("Password", type="password", key="password_input")  # เก็บค่าใน session state
+    email = st.text_input("Email", key="email_input")
+    password = st.text_input("Password", type="password", key="password_input")
     
     if st.button("Login"):
         try:
-            # ทำการล็อกอินผู้ใช้
             user = auth.sign_in_with_email_and_password(email, password)
             st.session_state.is_logged_in = True  # เปลี่ยนสถานะเป็นล็อกอินแล้ว
-            st.success("Login สำเร็จ!")  # แสดงข้อความสำเร็จ
+            st.success("Login สำเร็จ!")
             st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
         except Exception as e:
             error_message = str(e)
-            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")  # แสดงข้อความผิดพลาด
-            st.warning(f"รายละเอียดเพิ่มเติม: {error_message}")  # แสดงข้อความข้อผิดพลาด
+            st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+            if 'user-not-found' in error_message:
+                st.warning("อีเมลนี้ไม่มีในระบบ! กรุณา [ลงทะเบียนที่นี่](#signup)")
+                if st.button("Sign Up"):
+                    st.session_state.signup = True  # ตั้งค่าให้ไปที่หน้า Sign Up
+                    st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+
 
 
 
