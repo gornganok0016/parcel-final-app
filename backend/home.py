@@ -56,7 +56,10 @@ def login():
             
             if 'user-not-found' in error_message:
                 st.warning("อีเมลนี้ไม่มีในระบบ!")
-                # แสดงปุ่ม Sign Up
+                st.session_state.show_sign_up = True  # ใช้ตัวแปรสถานะเพื่อแสดงปุ่ม Sign Up
+
+# แสดงปุ่ม Sign Up ถ้าค่าตัวแปรสถานะเป็น True
+            if st.session_state.get('show_sign_up', False):
                 if st.button("Sign Up"):
                     st.session_state.signup = True  # เปลี่ยนสถานะเป็นต้องการลงทะเบียน
                     st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
