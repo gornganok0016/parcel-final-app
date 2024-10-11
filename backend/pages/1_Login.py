@@ -19,10 +19,11 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
 def login():
+    
     st.title("Login")
     email = st.text_input("Email")
     password = st.text_input("Password", type="password")
-
+    
     if st.button("Login"):
         try:
             user = auth.sign_in_with_email_and_password(email, password)
@@ -34,7 +35,6 @@ def login():
             st.session_state.current_page = "Sign Up"
             st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Sign Up
 
-    
     if st.button("Sign Up"):
         st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Sign Up
         
