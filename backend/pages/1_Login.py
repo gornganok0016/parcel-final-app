@@ -24,16 +24,22 @@ auth = firebase.auth()
 st.title("Login")
 email = st.text_input("Email")
 password = st.text_input("Password", type="password")
-    
+
 if st.button("Login"):
     try:
         user = auth.sign_in_with_email_and_password(email, password)
         st.success("Login สำเร็จ!")
         st.session_state.current_page = "home"  # เปลี่ยนไปยังหน้า Home
         st.switch_page("3_Home")  # สลับไปยังหน้า Home
-    except:
+    except Exception as e:
         st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-        st.switch_page("2_SignUp")
+        print(e)  # แสดงข้อผิดพลาดใน console (สำหรับการ debug)
+        st.session_state.current_page = "sign_up"  # เปลี่ยนสถานะ
+        st.switch_page("2_SignUp")  # สลับไปยังหน้า Sign Up
+
+if st.button("Sign Up"):
+    st.session_state.current_page = "sign_up"  # เปลี่ยนสถานะ
+    st.switch_page("2_SignUp")  # สลับไปยังหน้า Sign Up
 
 # ไฟล์ login.py
 if st.button("Sign Up"):
