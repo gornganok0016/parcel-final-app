@@ -33,3 +33,6 @@ def sign_up():
             st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Login
          except:
             st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+             
+if __name__ == "__main__":
+    sign_up()
