@@ -157,9 +157,11 @@ def check_question_in_csv(question):
 # ฟังก์ชันหลัก
 def main():
     global is_logged_in  # ใช้ตัวแปรสถานะล็อกอิน
-
     if not is_logged_in:  # ถ้ายังไม่ได้ล็อกอิน
-        login()  # แสดงหน้า Login
+        if st.session_state.get("signup", False):  # ตรวจสอบถ้าต้องการไปที่หน้า Sign Up
+            sign_up()  # แสดงหน้า Sign Up
+        else:
+            login()  # แสดงหน้า Login
     else:
         # สร้าง Navigation Bar
         st.sidebar.title("เมนู")
