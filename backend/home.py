@@ -53,6 +53,9 @@ def login():
             # ตรวจสอบว่าข้อผิดพลาดคือการไม่มีอีเมลใน Firebase
             if 'user-not-found' in error_message:
                 st.warning("อีเมลนี้ไม่มีในระบบ! กรุณา [ลงทะเบียนที่นี่](#signup)")
+                st.session_state.signup = True  # ไปที่หน้า Sign Up อัตโนมัติ
+                st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
+
 
 # ฟังก์ชันสำหรับหน้า Sign Up
 def sign_up():
@@ -69,8 +72,7 @@ def sign_up():
             st.session_state.signup = False  # รีเซ็ตสถานะ signup
             st.experimental_rerun()  # เริ่มต้นการทำงานใหม่
         except Exception as e:
-            st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
-
+            st.error("Sign Up ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง: " + str(e))
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
     st.title("หน้าแรก")
