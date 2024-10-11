@@ -51,11 +51,11 @@ def login():
                 auth.sign_in_with_email_and_password(email, password)
                 st.success("Login สำเร็จ!")
                 st.session_state.current_page = "home"  # เปลี่ยนหน้าไปยังหน้าแรก
-                st.rerun()  # บังคับรีเฟรชหน้า
+                st.experimental_rerun()  # บังคับรีเฟรชหน้า
             else:
                 st.warning("Email นี้ยังไม่เคยลงทะเบียน. กรุณาทำการลงทะเบียน.")
                 st.session_state.current_page = "sign_up"  # เปลี่ยนไปหน้า Sign Up
-                st.rerun()  # บังคับรีเฟรชหน้า
+                st.experimental_rerun()  # บังคับรีเฟรชหน้า
         except Exception as e:
             st.error(f"Login ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
 
@@ -72,7 +72,7 @@ def sign_up():
             auth.create_user_with_email_and_password(email, password)
             st.success("Sign Up สำเร็จ! กรุณาเข้าสู่ระบบ.")
             st.session_state.current_page = "login"  # เปลี่ยนหน้าไปยังหน้า Login
-            st.rerun()  # บังคับรีเฟรชหน้า
+            st.experimental_rerun()  # บังคับรีเฟรชหน้า
         except Exception as e:
             st.error(f"Sign Up ไม่สำเร็จ: {str(e)}")  # แสดงข้อความผิดพลาด
 
@@ -136,10 +136,11 @@ def check_question_in_csv(question):
 
 # ฟังก์ชันหลัก
 def main():
+    # ตรวจสอบว่า current_page ถูกตั้งค่าหรือยัง ถ้ายังไม่ตั้งให้ตั้งเป็น login
     if "current_page" not in st.session_state:
         st.session_state.current_page = "login"  # เริ่มต้นที่หน้า Login
     
-    # แสดงหน้าเฉพาะเมื่อจำเป็น
+    # ตรวจสอบและแสดงหน้าเฉพาะเมื่อจำเป็น
     if st.session_state.current_page == "login":
         login()
     elif st.session_state.current_page == "sign_up":
