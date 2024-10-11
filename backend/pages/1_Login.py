@@ -33,7 +33,7 @@ def login():
     if st.session_state.login_status == "success":
          st.success("Login สำเร็จ!")
          st.session_state.current_page = "home"  # เปลี่ยนไปยังหน้า Home
-         st.switch_page("5_Home")  # สลับไปยังหน้า Home
+         st.switch_page("pages/5_Home.py")  # สลับไปยังหน้า Home
     
 if __name__ == "__main__":
     login()
