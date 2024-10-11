@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 
-
 # ฟังก์ชันสำหรับหน้าแรก
 def home():
     st.title("หน้าแรก")
