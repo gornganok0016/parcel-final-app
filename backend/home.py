@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 import pyrebase
-from firebase_auth import auth  # ตรวจสอบว่าได้ import Firebase auth ถูกต้องหรือไม่
+
 
 # Firebase config
 firebaseConfig = {
