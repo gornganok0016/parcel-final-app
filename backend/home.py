@@ -11,9 +11,9 @@ def main():
     elif st.session_state.current_page == "sign_up":
         st.switch_page("SignUp")  # ไปที่หน้า Sign Up
     elif st.session_state.current_page == "chat":
-        st.switch_page("Chatbot")  # ไปที่หน้า Sign Up
+        st.switch_page("Chatbot")  # ไปที่หน้า Chatbot
     elif st.session_state.current_page == "admin":
-        st.switch_page("Admin")  # ไปที่หน้า Sign Up
+        st.switch_page("Admin")  # ไปที่หน้า Admin
 
 if __name__ == "__main__":
     main()
