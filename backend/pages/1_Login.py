@@ -38,6 +38,8 @@ def login():
         except Exception as e:
             st.session_state.login_status = "error"
             st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+            st.session_state.current_page = "Sign Up"
+            st.switch_page("pages/2_SignUp.py")  # สลับไปยังหน้า Sign Up
 
     # แสดงผลข้อความตามสถานะ
     if st.session_state.login_status == "success":
