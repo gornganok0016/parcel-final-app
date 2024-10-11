@@ -8,7 +8,7 @@ def main():
     st.sidebar.title("เมนู")
     page = st.sidebar.radio("เลือกหน้า:", ["หน้าอัปโหลด", "Chatbot"])
 
-    elif page == "หน้าอัปโหลด":
+    if page == "หน้าอัปโหลด":
         from pages.upload import show_upload  # นำเข้าฟังก์ชันจาก upload.py
         show_upload()
     elif page == "Chatbot":
