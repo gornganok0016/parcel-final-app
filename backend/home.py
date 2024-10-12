@@ -8,13 +8,12 @@ if "current_page" not in st.session_state:
 def hide_sidebar():
     hide_st_style = """
         <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            .css-1d391kg {display: none;}  /* คลาสทั่วไปของ sidebar */
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        [data-testid="stSidebar"] {display: none;}  /* ซ่อน sidebar */
         </style>
     """
     st.markdown(hide_st_style, unsafe_allow_html=True)
-
 # ตรวจสอบว่าเป็นหน้า login หรือไม่
 if st.session_state.current_page == "login":
     hide_sidebar()  # ซ่อน sidebar สำหรับหน้า login
