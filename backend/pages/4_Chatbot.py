@@ -10,7 +10,7 @@ def change_colors():
            background-color: #f0f0f0;  /* สีพื้นหลัง */
        }
        .chat.user { /* เปลี่ยนแปลงสีพื้นหลังของข้อความผู้ใช้ */
-           background-color: #d1e7dd; /* สีพื้นหลังข้อความผู้ใช้ */
+           background-color: #f0f0f0; /* สีพื้นหลังข้อความผู้ใช้ */
            color: black; /* สีข้อความ */
            flex-direction: row-reverse; /* ทำให้ข้อความของผู้ใช้อยู่ด้านขวา */
        }
@@ -21,9 +21,10 @@ def change_colors():
             width:100%;
             height:100%;
         }
-            .st-emotion-cache-15hul6a{
+        .st-emotion-cache-15hul6a{
             position: fixed;
             left: 90%;
+            color:white;
         }
         .stTextInput {
             position: fixed;
