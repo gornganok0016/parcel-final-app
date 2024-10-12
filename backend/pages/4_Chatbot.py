@@ -33,6 +33,7 @@ def change_colors():
             width: 85%;
             margin-bottom: 30px;
             left: 50%;
+            background-color: #f0f0f0;
             transform: translateX(-50%);
         }
         .st-emotion-cache-vl2fub {
