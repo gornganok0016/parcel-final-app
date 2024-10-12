@@ -5,7 +5,7 @@ def change_colors():
     style = """
         <style>
             .st-emotion-cache-bm2z3a {
-                background-color: #333366;  /* สีพื้นหลัง */
+                background-color: #f0f0f0;  /* สีพื้นหลัง */
             }
             .st-emotion-cache-h4xjwg{
                 background-color: #ff5f5f;  /* สีพื้นหลัง */
@@ -14,11 +14,11 @@ def change_colors():
                 color: #2c3e50;  /* สีของตัวอักษร */
             }
             .stButton>button {
-                background-color: white;  /*  */
-                color: black;  /* สีของตัวอักษรในปุ่ม */
+                background-color: #f9e75e;  /*  */
+                color: #333366;  /* สีของตัวอักษรในปุ่ม */
             }
             .stButton>button:hover {
-                background-color: black;  /* สีของปุ่มเมื่อชี้เมาส์ */
+                background-color: #ff5f5f;  /* สีของปุ่มเมื่อชี้เมาส์ */
             }
             footer {
                 visibility: hidden;  /* ซ่อนฟุตเตอร์ */
