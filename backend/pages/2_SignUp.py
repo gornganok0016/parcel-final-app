@@ -24,7 +24,7 @@ auth = firebase.auth()
 def change_colors():
     style = """
         <style>
-            #Sign Up {
+            .st-emotion-cache-m78myu {
                 color: #333366;  /* เปลี่ยนสีของคำว่า Login */
             }
             .st-emotion-cache-uef7qa {
