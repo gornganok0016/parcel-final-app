@@ -19,14 +19,15 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 CSV_FILE = 'backend/names.csv'
 def change_colors():
-     """
-        <style>
-        .body{
-            padding:0;
-            margin:0;
+    # กำหนด CSS เพื่อเปลี่ยนแปลงรูปแบบและสไตล์
+    style = """
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
             box-sizing: border-box;
-            width:100%;
-            height:100%;
+            width: 100%;
+            height: 100%;
         }
         .stTextInput {
             position: fixed;
@@ -52,15 +53,15 @@ def change_colors():
             color: white;
             font-size: 24px;
         }
-        .st-emotion-cache-12fmjuu{
+        .st-emotion-cache-12fmjuu {
             background-color: #FF5F5F;
             z-index: 1;
         }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-    
+    </style>
+    """
+    st.markdown(style, unsafe_allow_html=True)
+
+    # สร้าง navbar
     st.markdown(
         """
         <div class="navbar">
@@ -69,7 +70,6 @@ def change_colors():
         """,
         unsafe_allow_html=True
     )
-    
 
 def chat():
     change_colors()
