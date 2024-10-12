@@ -24,7 +24,7 @@ def change_colors():
                 color: #333366;  /* สีของตัวอักษรในปุ่ม */
             }
             .stButton>button:hover {
-                background-color: #ff5f5f;  /* สีของปุ่มเมื่อชี้เมาส์ */
+                background-color: #f9e75e;  /* สีของปุ่มเมื่อชี้เมาส์ */
             }
             footer {
                 visibility: hidden;  /* ซ่อนฟุตเตอร์ */
