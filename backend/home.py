@@ -10,10 +10,10 @@ if st.session_state.current_page == "login":
     
 def check_login():
     if "login_status" not in st.session_state:
-        st.session_state.login_status = None  # ตั้งค่าเริ่มต้นเป็น None
+        st.session_state.login_status = False  # ตั้งค่าเริ่มต้นเป็น None
     if not st.session_state.login_status:
         st.warning("กรุณา Login ก่อนเข้าหน้าอื่น")
-        st.switch_page("pages/1_Login.py")  # ไปที่หน้า Login
+        st.stop()  # หยุดการทำงานถ้าผู้ใช้ยังไม่ได้ล็อกอิน
     
 def main():
     # ตรวจสอบสถานะของ current_page และเรียก switch_page ตามหน้า
