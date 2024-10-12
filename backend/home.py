@@ -4,11 +4,20 @@ import streamlit as st
 if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
 
-# ตรวจสอบว่าเป็นหน้า login หรือไม่ และซ่อน sidebar ถ้าใช่
+# ซ่อน sidebar ด้วย CSS สำหรับหน้า login
+def hide_sidebar():
+    hide_st_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        .css-1d391kg {display: none;}  /* ซ่อน sidebar */
+        </style>
+    """
+    st.markdown(hide_st_style, unsafe_allow_html=True)
+
+# ตรวจสอบว่าเป็นหน้า login หรือไม่
 if st.session_state.current_page == "login":
-    st.set_page_config(layout="centered")  # ซ่อน sidebar
-else:
-    st.set_page_config(layout="wide")  # แสดง sidebar ในหน้าอื่น
+    hide_sidebar()  # ซ่อน sidebar สำหรับหน้า login
 
 def main():
     # ตรวจสอบสถานะของ current_page และเรียก switch_page ตามหน้า
