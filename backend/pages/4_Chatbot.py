@@ -9,7 +9,7 @@ def change_colors():
        .st-emotion-cache-1yiq2ps{
            background-color: #f0f0f0;  /* สีพื้นหลัง */
        }
-       .chat.user {
+       .chatuser {
             flex-direction: row-reverse;
             background-color: #f0f0f0;
         }    
