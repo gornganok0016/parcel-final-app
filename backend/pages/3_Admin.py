@@ -13,6 +13,13 @@ def check_login():
         st.warning("คุณไม่มีสิทธิ์เข้าถึงหน้านี้")
         st.stop()  # หยุดการทำงานถ้าผู้ใช้ไม่มีสิทธิ์
 
+def logout():
+    # รีเซ็ตสถานะการล็อกอิน
+    st.session_state.login_status = False
+    st.session_state.email = None  # ลบอีเมลออกจาก session
+    st.success("Logout สำเร็จ!")
+    st.session_state.current_page = "login"  # เปลี่ยนไปที่หน้า Login
+    st.experimental_rerun()  # รีเฟรชหน้า
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -26,6 +33,8 @@ bot_avatar = "https://firebasestorage.googleapis.com/v0/b/posto-ai-app.appspot.c
 
 def Admin():
     check_login()  # ตรวจสอบการล็อกอิน
+    if st.button("Logout"):
+        logout()  # เรียกฟังก์ชัน logout
     st.title("หน้าอัปโหลด")
     uploaded_file = st.file_uploader("อัปโหลดไฟล์", type=['jpg', 'png'])
         
