@@ -9,8 +9,8 @@ def change_colors():
        .st-emotion-cache-1yiq2ps{
            background-color: #f0f0f0;  /* สีพื้นหลัง */
        }
-       .st-emotion-cache-vl2fub{
-            color: #f0f0f0;
+       .stCustomComponentV1{
+           background-color: #f0f0f0; 
         }    
         .body{
             padding:0;
