@@ -13,7 +13,7 @@ def hide_sidebar():
         <style>
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
-        [data-testid="stSidebarNav"] {display: none;}  /* ซ่อน sidebar */
+        [data-testid="stSidebarContent"] {display: none;}  /* ซ่อน sidebar */
         </style>
     """
     st.markdown(hide_st_style, unsafe_allow_html=True)
