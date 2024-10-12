@@ -8,6 +8,8 @@ def main():
     # ตรวจสอบสถานะของ current_page และเรียก switch_page ตามหน้า
     if st.session_state.current_page == "login":
         st.switch_page("pages/1_Login.py")  # ไปที่หน้า Login
+    elif st.session_state.current_page == "login for admin":
+        st.switch_page("pages/6_Login_admin.py")  # ไปที่หน้า Login
     elif st.session_state.current_page == "sign_up":
         st.switch_page("pages/2_SignUp.py")  # ไปที่หน้า Sign Up
     elif st.session_state.current_page == "home":
