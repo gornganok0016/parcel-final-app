@@ -44,6 +44,23 @@ def login():
          st.success("Login สำเร็จ!")
          st.session_state.current_page = "home"  # เปลี่ยนไปยังหน้า Home
          st.switch_page("pages/4_Chatbot.py")  # สลับไปยังหน้า Home
+
+    if st.button("Login admin"):
+        # ตรวจสอบว่า email และ password ตรงกับที่กำหนดไว้หรือไม่
+        if email == allowed_email and password == allowed_password:
+            try:
+                user = auth.sign_in_with_email_and_password(email, password)
+                st.session_state.login_status = "success"
+            except:
+                st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
+        else:
+            st.error("Email หรือ Password ไม่ถูกต้อง.")
+
+    if st.session_state.login_status == "success":
+         st.success("Login สำเร็จ!")
+         st.session_state.current_page = "Admin"  # เปลี่ยนไปยังหน้า Home
+         st.switch_page("pages/3_Admin.py")  # สลับไปยังหน้า Home
+
         
     
 if __name__ == "__main__":
