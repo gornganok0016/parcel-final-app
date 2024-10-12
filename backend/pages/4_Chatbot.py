@@ -9,7 +9,7 @@ def change_colors():
        .st-emotion-cache-1yiq2ps{
            background-color: #f0f0f0;  /* สีพื้นหลัง */
        }
-       .st-emotion-cache-aw3kcd{
+       .st-emotion-cache-1wmy9hl{
             color: #f0f0f0;
         }    
         .body{
