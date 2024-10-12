@@ -5,15 +5,18 @@ if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
 
 # ซ่อน sidebar ด้วย CSS สำหรับหน้า login
-def hide_sidebar():
-    hide_st_style = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        [data-testid="stSidebar"] {display: none;}  /* ซ่อน sidebar */
-        </style>
+st.set_page_config(initial_sidebar_state="collapsed")
+
+st.markdown(
     """
-    st.markdown(hide_st_style, unsafe_allow_html=True)
+<style>
+    [data-testid="collapsedControl"] {
+        display: none
+    }
+</style>
+""",
+    unsafe_allow_html=True,
+)
 # ตรวจสอบว่าเป็นหน้า login หรือไม่
 if st.session_state.current_page == "login":
     hide_sidebar()  # ซ่อน sidebar สำหรับหน้า login
