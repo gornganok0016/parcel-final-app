@@ -8,12 +8,21 @@ if "current_page" not in st.session_state:
 if st.session_state.current_page == "login":
     ShowSidebarNavigation = false
 
+def hide_sidebar():
+    hide_st_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        [data-testid="stSidebar"] {display: none;}  /* ซ่อน sidebar */
+        </style>
+    """
+    st.markdown(hide_st_style, unsafe_allow_html=True)
+    
 def main():
     # ตรวจสอบสถานะของ current_page และเรียก switch_page ตามหน้า
-    if st.session_state.current_page == "login":
+   if st.session_state.current_page == "login":
+        hide_sidebar()  # ซ่อน sidebar เฉพาะหน้า login
         st.switch_page("pages/1_Login.py")  # ไปที่หน้า Login
-    elif st.session_state.current_page == "login for admin":
-        st.switch_page("pages/6_Login_admin.py")  # ไปที่หน้า Login
     elif st.session_state.current_page == "sign_up":
         st.switch_page("pages/2_SignUp.py")  # ไปที่หน้า Sign Up
     elif st.session_state.current_page == "home":
