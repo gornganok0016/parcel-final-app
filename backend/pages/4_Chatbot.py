@@ -9,6 +9,16 @@ def check_login():
         st.session_state.current_page = "Login"  # เปลี่ยนไปยังหน้า Home
         st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Home
 
+def logout():
+    if "login_status" in st.session_state:
+        st.session_state.login_status = False
+    if "email" in st.session_state:
+        st.session_state.email = None  # ลบอีเมลออกจาก session
+    st.success("Logout สำเร็จ!")
+    st.session_state.current_page = "login"  # เปลี่ยนไปที่หน้า Login
+    st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Home
+    st.experimental_rerun()  # รีเฟรชหน้า
+    
 # กำหนดค่าเริ่มต้นสำหรับ messages
 st.session_state.setdefault('past', [])
 st.session_state.setdefault('generated', [])
