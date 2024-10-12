@@ -4,21 +4,9 @@ import streamlit as st
 if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
 
-st.set_page_config(initial_sidebar_state="collapsed")
-
-st.markdown(
-    """
-    <style>
-        div[data-testid="collapsedControl"] {
-            visibility: hidden;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 # ตรวจสอบว่าเป็นหน้า login หรือไม่
 if st.session_state.current_page == "login":
-    hide_sidebar()  # ซ่อน sidebar สำหรับหน้า login
+    ShowSidebarNavigation = false
 
 def main():
     # ตรวจสอบสถานะของ current_page และเรียก switch_page ตามหน้า
