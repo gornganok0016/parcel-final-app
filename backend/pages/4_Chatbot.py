@@ -9,9 +9,6 @@ def change_colors():
        .st-emotion-cache-1yiq2ps{
            background-color: #f0f0f0;  /* สีพื้นหลัง */
        }
-       .stCustomComponentV1{
-           color: #f0f0f0; 
-        }    
         .body{
             padding:0;
             margin:0;
@@ -30,6 +27,10 @@ def change_colors():
             margin-bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
+        }
+        .chat-message {
+            background-color: #f0f0f0; /* เปลี่ยนสีพื้นหลังข้อความ */
+            color: black; /* สีข้อความ */
         }
         .navbar {
             position: fixed;
