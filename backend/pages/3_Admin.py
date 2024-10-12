@@ -6,7 +6,7 @@ from model import read_name_from_image, crop_and_read_names, save_to_csv, count_
 def change_colors():
     style = """
         <style>
-            #Upload Parcel Image {
+            #upload-parcel-image {
                 color: #333366;  /* เปลี่ยนสีของคำว่า Login */
             }
             .st-emotion-cache-bm2z3a {
