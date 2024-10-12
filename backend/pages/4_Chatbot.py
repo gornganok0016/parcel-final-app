@@ -48,7 +48,7 @@ def change_colors():
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 100;
+            # z-index: 100;
         }
         .navbar span {
             color: white;
@@ -56,7 +56,7 @@ def change_colors():
         }
         .st-emotion-cache-12fmjuu{
             background-color: #FF5F5F;
-            z-index: 1;
+            # z-index: 1;
         }
         </style>
     """
