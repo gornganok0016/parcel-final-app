@@ -22,7 +22,7 @@ def change_colors():
                 color: #333366;  /* สีของตัวอักษร */
             }
             .st-emotion-cache-1erivf3{
-                background-color: #FCFAEE;  /* สี upload */
+                background-color: #333366;  /* สี upload */
             }
             .stButton>button {
                 background-color: #f9e75e;  /*  */
