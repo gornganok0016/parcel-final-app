@@ -7,7 +7,7 @@ def change_colors():
             #login {
                 color: #333366;  /* เปลี่ยนสีของคำว่า Login */
             }
-            #Email {
+            st-text_input {
                 color: #333366;  /* เปลี่ยนสีของคำว่า Login */
             }
             #Password {
