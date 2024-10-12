@@ -11,7 +11,7 @@ def change_colors():
                 background-color: #ff5f5f;  /* สีพื้นหลัง */
             }
             .stText {
-                color: #2c3e50;  /* สีของตัวอักษร */
+                color: #333366;  /* สีของตัวอักษร */
             }
             .stButton>button {
                 background-color: #f9e75e;  /*  */
