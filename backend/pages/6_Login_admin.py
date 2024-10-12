@@ -45,7 +45,7 @@ def login():
     if st.session_state.login_status == "success":
          st.success("Login สำเร็จ!")
          st.session_state.current_page = "Admin"  # เปลี่ยนไปยังหน้า Home
-         st.switch_page("pages/5_Admin.py")  # สลับไปยังหน้า Home
+         st.switch_page("pages/3_Admin.py")  # สลับไปยังหน้า Home
 
 if __name__ == "__main__":
     login()
