@@ -9,7 +9,7 @@ def check_login():
         st.session_state.current_page = "Login"  # เปลี่ยนไปยังหน้า Home
         st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Home
 
-    if "email" not in st.session_state or st.session_state.email != "admin@adminbydorm.com":  # เปลี่ยนเป็นบัญชีที่อนุญาต
+    if "email" in st.session_state or st.session_state.email != "admin@adminbydorm.com":  # เปลี่ยนเป็นบัญชีที่อนุญาต
         st.warning("คุณไม่มีสิทธิ์เข้าถึงหน้านี้")
         st.stop()  # หยุดการทำงานถ้าผู้ใช้ไม่มีสิทธิ์
 
