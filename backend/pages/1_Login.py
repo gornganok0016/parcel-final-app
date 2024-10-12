@@ -10,6 +10,9 @@ def change_colors():
             input[type="email"], input[type="password"] {
                 color: #333366;  /* สีข้อความในฟิลด์ input */
             }
+            .st-emotion-cache-uef7qa e1nzilvr5{
+                color: #333366;  /* สีข้อความในฟิลด์ input */
+            }
             /* เปลี่ยนสีพื้นหลังของฟิลด์ input */
             .stTextInput > div > div > input {
                 background-color: #e8f0fe;  /* สีพื้นหลังของฟิลด์ input */
