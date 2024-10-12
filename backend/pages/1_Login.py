@@ -7,14 +7,17 @@ def change_colors():
             #login {
                 color: #333366;  /* เปลี่ยนสีของคำว่า Login */
             }
-            .st-emotion-cache-uef7qa {
+            input[type="text"], input[type="password"] {
                 color: #333366;  /* สีข้อความในฟิลด์ input */
             }
-           .stTextInput > div > div > input {
-                background-color: #FCFAEE;  /* สีพื้นหลังของฟิลด์ input */
+            /* เปลี่ยนสีพื้นหลังของฟิลด์ input */
+            .stTextInput > div > div > input {
+                background-color: #e8f0fe;  /* สีพื้นหลังของฟิลด์ input */
             }
-            input[type="email"], input[type="Password"] {
-                color: #333366;  /* สีข้อความในฟิลด์ input */
+            /* เปลี่ยนสีของ label */
+            label {
+                color: #333366;  /* สีของ label */
+                font-weight: bold;  /* หนักตัวอักษร */
             }
             .st-emotion-cache-bm2z3a {
                 background-color: #f0f0f0;  /* สีพื้นหลัง */
