@@ -9,6 +9,10 @@ def change_colors():
        .st-emotion-cache-1yiq2ps{
            background-color: #f0f0f0;  /* สีพื้นหลัง */
        }
+       .chat.user {
+            flex-direction: row-reverse;
+            background-color: #f0f0f0;
+        }    
         .body{
             padding:0;
             margin:0;
@@ -16,7 +20,7 @@ def change_colors():
             width:100%;
             height:100%;
         }
-        .st-emotion-cache-15hul6a{
+            .st-emotion-cache-15hul6a{
             position: fixed;
             left: 90%;
         }
