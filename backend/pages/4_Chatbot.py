@@ -20,6 +20,7 @@ def change_colors():
             box-sizing: border-box;
             width:100%;
             height:100%;
+            background-color: #f0f0f0;
         }
         .st-emotion-cache-15hul6a{
             position: fixed;
