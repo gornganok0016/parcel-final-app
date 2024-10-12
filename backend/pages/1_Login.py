@@ -50,7 +50,7 @@ def login():
         if email == allowed_email and password == allowed_password:
             try:
                 user = auth.sign_in_with_email_and_password(email, password)
-                st.session_state.allowed_email = allowed_email  # เก็บอีเมลลงใน session state
+                st.session_state.email = email  # เก็บอีเมลลงใน session state
                 st.session_state.login_status = "success"
             except:
                 st.error("Login ไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง.")
