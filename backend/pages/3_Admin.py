@@ -20,6 +20,7 @@ def logout():
         st.session_state.email = None  # ลบอีเมลออกจาก session
     st.success("Logout สำเร็จ!")
     st.session_state.current_page = "login"  # เปลี่ยนไปที่หน้า Login
+    st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Home
     st.experimental_rerun()  # รีเฟรชหน้า
 
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
