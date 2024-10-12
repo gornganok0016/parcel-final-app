@@ -13,7 +13,7 @@ def change_colors():
            .stTextInput > div > div > input {
                 background-color: #FCFAEE;  /* สีพื้นหลังของฟิลด์ input */
             }
-            input[type="email"], input[type="password"] {
+            input[type="email"], input[type="Password"] {
                 color: #333366;  /* สีข้อความในฟิลด์ input */
             }
             .st-emotion-cache-bm2z3a {
