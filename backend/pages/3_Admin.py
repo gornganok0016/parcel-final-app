@@ -3,6 +3,36 @@ import os
 import pandas as pd
 from model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 
+def change_colors():
+    style = """
+        <style>
+            #Upload Parcel Image {
+                color: #333366;  /* เปลี่ยนสีของคำว่า Login */
+            }
+            .st-emotion-cache-bm2z3a {
+                background-color: #f0f0f0;  /* สีพื้นหลัง */
+            }
+            .st-emotion-cache-h4xjwg{
+                background-color: #ff5f5f;  /* สีพื้นหลัง */
+            }
+            st-emotion-cache-1dp5vir{
+                background-color: #ff5f5f;  /* สีพื้นหลัง */
+            }
+            .stText {
+                color: #333366;  /* สีของตัวอักษร */
+            }
+            .stButton>button {
+                background-color: #f9e75e;  /*  */
+                color: #333366;  /* สีของตัวอักษรในปุ่ม */
+            }
+            .stButton>button:hover {
+                background-color: #f9e75e;  /* สีของปุ่มเมื่อชี้เมาส์ */
+            }
+        
+        </style>
+    """
+    st.markdown(style, unsafe_allow_html=True)
+
 def check_login():
     if "login_status" not in st.session_state or not st.session_state.login_status:
         st.warning("กรุณา Login ก่อนเข้าหน้าอื่น")
@@ -35,9 +65,10 @@ user_avatar = "https://firebasestorage.googleapis.com/v0/b/posto-ai-app.appspot.
 bot_avatar = "https://firebasestorage.googleapis.com/v0/b/posto-ai-app.appspot.com/o/robot.png?alt=media&token=99e37f4c-dbef-4d07-86a5-75e70585ac54"    # URL ของรูปโปรไฟล์ Chatbot
 
 def Admin():
+    change_colors()
     check_login()  # ตรวจสอบการล็อกอิน
-    st.title("หน้าอัปโหลด")
-    uploaded_file = st.file_uploader("อัปโหลดไฟล์", type=['jpg', 'png'])
+    st.title("Upload Parcel Image")
+    uploaded_file = st.file_uploader("Select Files", type=['jpg', 'png'])
         
     if uploaded_file is not None:
         image_path = os.path.join(UPLOAD_FOLDER, uploaded_file.name)
