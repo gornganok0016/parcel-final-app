@@ -7,6 +7,7 @@ def check_login():
     if "login_status" not in st.session_state or not st.session_state.login_status:
         st.warning("กรุณา Login ก่อนเข้าหน้าอื่น")
         st.stop()  # หยุดการทำงานถ้าผู้ใช้ยังไม่ได้ล็อกอิน
+        st.session_state.current_page = "Admin"  # เปลี่ยนไปยังหน้า Home
         st.switch_page("pages/3_Admin.py")  # สลับไปยังหน้า Home
 
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
