@@ -18,13 +18,8 @@ UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 CSV_FILE = 'backend/names.csv'
-
-def chat():
-    check_login()
-
-    # ใช้ CSS สำหรับ fix text input ให้ติดอยู่ที่ด้านล่างของหน้าจอ
-    st.markdown(
-        """
+def change_colors():
+     """
         <style>
         .body{
             padding:0;
@@ -74,6 +69,11 @@ def chat():
         """,
         unsafe_allow_html=True
     )
+    
+
+def chat():
+    change_colors()
+    check_login() 
 
     # ฟังก์ชันสำหรับการตรวจสอบคำถามใน CSV
     def check_question_in_csv(question):
