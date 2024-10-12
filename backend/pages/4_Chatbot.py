@@ -23,7 +23,7 @@ CSV_FILE = 'backend/names.csv'  # แก้ไขให้ตรงตามพ�
 user_avatar = "https://firebasestorage.googleapis.com/v0/b/posto-ai-app.appspot.com/o/user.png?alt=media&token=f22ea9fc-4de4-4ed9-801b-4a2875312905"  # URL ของรูปโปรไฟล์ผู้ใช้
 bot_avatar = "https://firebasestorage.googleapis.com/v0/b/posto-ai-app.appspot.com/o/robot.png?alt=media&token=99e37f4c-dbef-4d07-86a5-75e70585ac54"    # URL ของรูปโปรไฟล์ Chatbot
 def chat():
-    check_login():
+    check_login()
     st.title("Chatbot")
     
     # ฟังก์ชันสำหรับการตรวจสอบคำถามใน CSV
