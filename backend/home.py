@@ -10,7 +10,7 @@ def hide_sidebar():
         <style>
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
-        .css-1d391kg {display: none;}  /* ซ่อน sidebar */
+        .st-emotion-cache-1wqrzgl {display: none;}  /* ซ่อน sidebar */
         </style>
     """
     st.markdown(hide_st_style, unsafe_allow_html=True)
