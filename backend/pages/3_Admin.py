@@ -13,16 +13,16 @@ def change_colors():
                 background-color: #f0f0f0;  /* สีพื้นหลัง */
             }
             .st-emotion-cache-h4xjwg{
-                background-color: #ff5f5f;  /* สีพื้นหลัง */
+                background-color: #ff5f5f;  /* สีheader */
             }
             st-emotion-cache-1dp5vir{
-                background-color: #ff5f5f;  /* สีพื้นหลัง */
+                background-color: #ff5f5f;  /* header */
             }
             .stText {
                 color: #333366;  /* สีของตัวอักษร */
             }
             .st-emotion-cache-1erivf3{
-                background-color: #ff5f5f;  /* สีพื้นหลัง */
+                background-color: #FCFAEE;  /* สี upload */
             }
             .stButton>button {
                 background-color: #f9e75e;  /*  */
