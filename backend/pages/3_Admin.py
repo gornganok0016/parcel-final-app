@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 import pandas as pd
-from backend/model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
+from backend.model import read_name_from_image, crop_and_read_names, save_to_csv, count_names_in_csv
 
 def change_colors():
     style = """
