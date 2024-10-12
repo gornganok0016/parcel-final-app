@@ -10,9 +10,8 @@ def change_colors():
             .st-emotion-cache-uef7qa {
                 color: #333366;  /* สีข้อความในฟิลด์ input */
             }
-            /* เปลี่ยนสีของข้อความในฟิลด์ label */
-            label {
-                color: #333366;  /* สีของ label */
+           .stTextInput > div > div > input {
+                background-color: #FCFAEE;  /* สีพื้นหลังของฟิลด์ input */
             }
             .st-emotion-cache-bm2z3a {
                 background-color: #f0f0f0;  /* สีพื้นหลัง */
