@@ -18,6 +18,9 @@ firebaseConfig = {
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
+allowed_email = "admin@adminbydorm.com"
+allowed_password = "admin1234"
+
 def login():
     st.title("Login")
 
