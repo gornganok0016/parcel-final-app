@@ -7,6 +7,9 @@ def change_colors():
             .st-emotion-cache-bm2z3a {
                 background-color: #333366;  /* สีพื้นหลัง */
             }
+            .st-emotion-cache-h4xjwg ezrtsby2{
+                background-color: #ffe5e5;  /* สีพื้นหลัง */
+            }
             .stText {
                 color: #2c3e50;  /* สีของตัวอักษร */
             }
