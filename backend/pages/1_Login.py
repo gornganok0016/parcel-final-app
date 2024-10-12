@@ -7,7 +7,7 @@ def change_colors():
             #login {
                 color: #333366;  /* เปลี่ยนสีของคำว่า Login */
             }
-            input[type="text"], input[type="password"] {
+            input[type="email"], input[type="password"] {
                 color: #333366;  /* สีข้อความในฟิลด์ input */
             }
             /* เปลี่ยนสีพื้นหลังของฟิลด์ input */
