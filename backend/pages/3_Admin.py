@@ -14,7 +14,7 @@ def check_login():
         st.stop()  # หยุดการทำงานถ้าผู้ใช้ไม่มีสิทธิ์
 
 def logout():
-     if "login_status" in st.session_state:
+    if "login_status" in st.session_state:
         st.session_state.login_status = False
     if "email" in st.session_state:
         st.session_state.email = None  # ลบอีเมลออกจาก session
