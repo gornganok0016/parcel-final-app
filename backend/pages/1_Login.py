@@ -4,7 +4,7 @@ import pyrebase
 def change_colors():
     style = """
         <style>
-            .stMain st-emotion-cache-bm2z3a {
+            .st-emotion-cache-bm2z3a {
                 background-color: #333366;  /* สีพื้นหลัง */
             }
             .stText {
