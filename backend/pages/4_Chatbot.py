@@ -28,7 +28,7 @@ def change_colors():
             left: 50%;
             transform: translateX(-50%);
         }
-        .chat-message {
+        .st-emotion-cache-vl2fub {
             background-color: #f0f0f0; /* เปลี่ยนสีพื้นหลังข้อความ */
             color: black; /* สีข้อความ */
         }
