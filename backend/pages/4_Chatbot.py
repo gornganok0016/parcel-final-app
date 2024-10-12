@@ -3,39 +3,9 @@ import pandas as pd
 from streamlit_chat import message
 import os
 
-def check_login():
-    if "login_status" not in st.session_state or not st.session_state.login_status:
-        st.warning("กรุณา Login ก่อนเข้าหน้าอื่น")
-        st.session_state.current_page = "Login"
-        st.switch_page("pages/1_Login.py")
-
-# กำหนดค่าเริ่มต้นสำหรับ messages
-st.session_state.setdefault('past', [])
-st.session_state.setdefault('generated', [])
-
-def logout():
-    if "login_status" in st.session_state:
-        st.session_state.login_status = False
-    if "email" in st.session_state:
-        st.session_state.email = None  # ลบอีเมลออกจาก session
-    st.success("Logout สำเร็จ!")
-    st.session_state.current_page = "login"  # เปลี่ยนไปที่หน้า Login
-    st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Home
-    st.experimental_rerun()  # รีเฟรชหน้า
-
-# สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
-UPLOAD_FOLDER = 'uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-
-CSV_FILE = 'backend/names.csv'
-
-def chat():
-    check_login()
-
-    # ใช้ CSS สำหรับ fix text input ให้ติดอยู่ที่ด้านล่างของหน้าจอ
-    st.markdown(
-        """
-        <style>
+def change_colors():
+    style = """
+       <style>
         .body{
             padding:0;
             margin:0;
@@ -76,19 +46,48 @@ def chat():
             z-index: 1;
         }
         </style>
-        """,
-        unsafe_allow_html=True
-    )
+    """
     
+    st.markdown(style, unsafe_allow_html=True)  # แทรก CSS
+
     st.markdown(
         """
         <div class="navbar">
             <span>POSTO</span>
         </div>
         """,
-        unsafe_allow_html=True
+        unsafe_allow_html=True  # แทรก HTML
     )
+    
+def check_login():
+    if "login_status" not in st.session_state or not st.session_state.login_status:
+        st.warning("กรุณา Login ก่อนเข้าหน้าอื่น")
+        st.session_state.current_page = "Login"
+        st.switch_page("pages/1_Login.py")
 
+# กำหนดค่าเริ่มต้นสำหรับ messages
+st.session_state.setdefault('past', [])
+st.session_state.setdefault('generated', [])
+
+def logout():
+    if "login_status" in st.session_state:
+        st.session_state.login_status = False
+    if "email" in st.session_state:
+        st.session_state.email = None  # ลบอีเมลออกจาก session
+    st.success("Logout สำเร็จ!")
+    st.session_state.current_page = "login"  # เปลี่ยนไปที่หน้า Login
+    st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Home
+    st.experimental_rerun()  # รีเฟรชหน้า
+
+# สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
+UPLOAD_FOLDER = 'uploads'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+CSV_FILE = 'backend/names.csv'
+
+def chat():
+    change_colors()
+    check_login()
     # ฟังก์ชันสำหรับการตรวจสอบคำถามใน CSV
     def check_question_in_csv(question):
         try:
