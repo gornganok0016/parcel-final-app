@@ -7,16 +7,13 @@ if "current_page" not in st.session_state:
 # ตรวจสอบว่าเป็นหน้า login หรือไม่
 if st.session_state.current_page == "login":
     ShowSidebarNavigation = false
-
-def hide_sidebar():
-    hide_st_style = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        [data-testid="stSidebarContent"] {display: none;}  /* ซ่อน sidebar */
-        </style>
-    """
-    st.markdown(hide_st_style, unsafe_allow_html=True)
+    
+def check_login():
+    if "login_status" not in st.session_state:
+        st.session_state.login_status = False  # กำหนดค่าเริ่มต้นเป็น False
+    if not st.session_state.login_status:
+        st.warning("กรุณา Login ก่อนเข้าหน้าอื่น")
+        st.stop()  # หยุดการทำงานถ้าผู้ใช้ยังไม่ได้ล็อกอิน
     
 def main():
     # ตรวจสอบสถานะของ current_page และเรียก switch_page ตามหน้า
