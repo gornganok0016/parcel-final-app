@@ -21,6 +21,47 @@ firebaseConfig = {
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
+def change_colors():
+    style = """
+        <style>
+            #Sign Up {
+                color: #333366;  /* เปลี่ยนสีของคำว่า Login */
+            }
+            .st-emotion-cache-uef7qa {
+                color: #333366;  /* สีข้อความในฟิลด์ input */
+            }
+           .stTextInput > div > div > input {
+                background-color: #FCFAEE;  /* สีพื้นหลังของฟิลด์ input */
+            }
+            .st-emotion-cache-bm2z3a {
+                background-color: #f0f0f0;  /* สีพื้นหลัง */
+            }
+            .st-emotion-cache-h4xjwg{
+                background-color: #ff5f5f;  /* สีพื้นหลัง */
+            }
+            st-emotion-cache-1dp5vir{
+                background-color: #ff5f5f;  /* สีพื้นหลัง */
+            }
+            .stText {
+                color: #333366;  /* สีของตัวอักษร */
+            }
+            .stButton>button {
+                background-color: #f9e75e;  /*  */
+                color: #333366;  /* สีของตัวอักษรในปุ่ม */
+            }
+            .stButton>button:hover {
+                background-color: #f9e75e;  /* สีของปุ่มเมื่อชี้เมาส์ */
+            }
+            footer {
+                visibility: hidden;  /* ซ่อนฟุตเตอร์ */
+            }
+            #MainMenu {
+                visibility: hidden;  /* ซ่อนเมนูหลัก */
+            }
+        </style>
+    """
+    st.markdown(style, unsafe_allow_html=True)
+
 def sign_up():
     st.title("Sign Up")
 
