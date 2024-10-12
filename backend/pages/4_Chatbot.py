@@ -6,6 +6,9 @@ import os
 def change_colors():
     style = """
        <style>
+       .st-emotion-cache-1yiq2ps ea3mdgi9{
+       
+       }
         .body{
             padding:0;
             margin:0;
