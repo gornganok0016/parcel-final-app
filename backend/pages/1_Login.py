@@ -7,7 +7,7 @@ def change_colors():
             #login {
                 color: #333366;  /* เปลี่ยนสีของคำว่า Login */
             }
-            #Email {
+            .st-emotion-cache-uef7qa {
                 color: #333366;  /* สีข้อความในฟิลด์ input */
             }
             /* เปลี่ยนสีของข้อความในฟิลด์ label */
