@@ -16,7 +16,7 @@ def change_colors():
             width:100%;
             height:100%;
         }
-        .st-emotion-cache-1vt4y43{
+        .st-emotion-cache-15hul6a{
             position: fixed;
             left: 90%;
         }
