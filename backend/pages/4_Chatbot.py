@@ -10,7 +10,7 @@ def change_colors():
            background-color: #f0f0f0;  /* สีพื้นหลัง */
        }
        .stCustomComponentV1{
-           background-color: #f0f0f0; 
+           color: #f0f0f0; 
         }    
         .body{
             padding:0;
