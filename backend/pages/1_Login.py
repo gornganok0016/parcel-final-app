@@ -4,7 +4,7 @@ import pyrebase
 def change_colors():
     style = """
         <style>
-            .st-title {
+            #login {
                 color: #333366;  /* เปลี่ยนสีของคำว่า Login */
             }
             .st-emotion-cache-bm2z3a {
