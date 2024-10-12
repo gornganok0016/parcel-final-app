@@ -21,6 +21,9 @@ def change_colors():
             .stText {
                 color: #333366;  /* สีของตัวอักษร */
             }
+            .st-emotion-cache-1erivf3{
+                background-color: #ff5f5f;  /* สีพื้นหลัง */
+            }
             .stButton>button {
                 background-color: #f9e75e;  /*  */
                 color: #333366;  /* สีของตัวอักษรในปุ่ม */
