@@ -8,9 +8,9 @@ if "current_page" not in st.session_state:
 def hide_sidebar():
     hide_st_style = """
         <style>
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        .st-emotion-cache-1wqrzgl {display: none;}  /* ซ่อน sidebar */
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            .css-1d391kg {display: none;}  /* คลาสทั่วไปของ sidebar */
         </style>
     """
     st.markdown(hide_st_style, unsafe_allow_html=True)
