@@ -15,10 +15,10 @@ def change_colors():
             }
             .stButton>button {
                 background-color: white;  /*  */
-                color: white;  /* สีของตัวอักษรในปุ่ม */
+                color: black;  /* สีของตัวอักษรในปุ่ม */
             }
             .stButton>button:hover {
-                background-color: #2980b9;  /* สีของปุ่มเมื่อชี้เมาส์ */
+                background-color: black;  /* สีของปุ่มเมื่อชี้เมาส์ */
             }
             footer {
                 visibility: hidden;  /* ซ่อนฟุตเตอร์ */
