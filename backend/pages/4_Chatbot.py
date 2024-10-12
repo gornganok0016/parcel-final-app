@@ -82,6 +82,8 @@ def chat():
     
     # ช่องป้อนข้อความ
     st.text_input("ถามคำถามของคุณที่นี่:", on_change=on_input_change, key="user_input")
+    if st.button("Logout"):
+        logout()  # เรียกฟังก์ชัน logout
 
 if __name__ == "__main__":
     chat()
