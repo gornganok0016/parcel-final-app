@@ -9,7 +9,7 @@ def change_colors():
        .st-emotion-cache-1yiq2ps{
            background-color: #f0f0f0;  /* สีพื้นหลัง */
        }
-       .stChatInputContainer > div{ /* เปลี่ยนแปลงสีพื้นหลังของข้อความผู้ใช้ */
+        [data-testid="stChatInput"]{ /* เปลี่ยนแปลงสีพื้นหลังของข้อความผู้ใช้ */
            background-color: #f0f0f0; /* สีพื้นหลังข้อความผู้ใช้ */
            color: black; /* สีข้อความ */
            flex-direction: row-reverse; /* ทำให้ข้อความของผู้ใช้อยู่ด้านขวา */
