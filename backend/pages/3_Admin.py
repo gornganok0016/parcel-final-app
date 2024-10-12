@@ -57,6 +57,9 @@ def logout():
     st.success("Logout สำเร็จ!")
     st.session_state.current_page = "login"  # เปลี่ยนไปที่หน้า Login
     st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Home
+    st.session_state['past'] = []
+    st.session_state['generated'] = []
+    
     st.experimental_rerun()  # รีเฟรชหน้า
 
 # สร้างโฟลเดอร์สำหรับอัปโหลดถ้าไม่มี
