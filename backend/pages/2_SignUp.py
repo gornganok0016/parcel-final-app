@@ -63,6 +63,7 @@ def change_colors():
     st.markdown(style, unsafe_allow_html=True)
 
 def sign_up():
+    change_colors()
     st.title("Sign Up")
 
     if "signup_status" not in st.session_state:
