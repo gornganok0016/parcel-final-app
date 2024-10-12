@@ -19,57 +19,40 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 CSV_FILE = 'backend/names.csv'
 def change_colors():
-    # กำหนด CSS เพื่อเปลี่ยนแปลงรูปแบบและสไตล์
     style = """
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-            box-sizing: border-box;
-            width: 100%;
-            height: 100%;
-        }
-        .stTextInput {
-            position: fixed;
-            bottom: 0;
-            width: 85%;
-            margin-bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #FF5F5F;
-            height: 10vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-        }
-        .navbar span {
-            color: white;
-            font-size: 24px;
-        }
-        .st-emotion-cache-12fmjuu {
-            background-color: #FF5F5F;
-            z-index: 1;
-        }
-    </style>
+        <style>
+            # #upload-parcel-image {
+            #     color: #333366;  /* เปลี่ยนสีของคำว่า Login */
+            # }
+            .st-emotion-cache-bm2z3a {
+                background-color: #f0f0f0;  /* สีพื้นหลัง */
+            }
+            .st-emotion-cache-h4xjwg{
+                background-color: #ff5f5f;  /* สีheader */
+            }
+            st-emotion-cache-1dp5vir{
+                background-color: #ff5f5f;  /* header */
+            }
+            .stText {
+                color: #333366;  /* สีของตัวอักษร */
+            }
+            .st-emotion-cache-1erivf3{
+                background-color: #333366;  /* สี upload */
+            }
+            st-emotion-cache-15hul6a{
+                background-color: #333366;  /* สี upload */
+            }
+            .stButton>button {
+                background-color: #f9e75e;  /*  */
+                color: #333366;  /* สีของตัวอักษรในปุ่ม */
+            }
+            .stButton>button:hover {
+                background-color: #f9e75e;  /* สีของปุ่มเมื่อชี้เมาส์ */
+            }
+        
+        </style>
     """
     st.markdown(style, unsafe_allow_html=True)
-
-    # สร้าง navbar
-    st.markdown(
-        """
-        <div class="navbar">
-            <span>POSTO</span>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
 
 def chat():
     change_colors()
