@@ -11,7 +11,7 @@ def change_colors():
        }
        .st-emotion-cache-vl2fub{
             
-            background-color: #f0f0f0;
+            color: #f0f0f0;
         }    
         .body{
             padding:0;
