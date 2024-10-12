@@ -6,7 +6,6 @@ from model import read_name_from_image, crop_and_read_names, save_to_csv, count_
 def check_login():
     if "login_status" not in st.session_state or not st.session_state.login_status:
         st.warning("กรุณา Login ก่อนเข้าหน้าอื่น")
-        st.stop()  # หยุดการทำงานถ้าผู้ใช้ยังไม่ได้ล็อกอิน
         st.session_state.current_page = "Login"  # เปลี่ยนไปยังหน้า Home
         st.switch_page("pages/1_Login.py")  # สลับไปยังหน้า Home
 
