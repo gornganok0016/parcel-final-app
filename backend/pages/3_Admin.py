@@ -24,7 +24,7 @@ def change_colors():
             .st-emotion-cache-1erivf3{
                 background-color: #333366;  /* สี upload */
             }
-            st-emotion-cache-15hul6a ef3psqc16{
+            st-emotion-cache-15hul6a{
                 background-color: #333366;  /* สี upload */
             }
             .stButton>button {
