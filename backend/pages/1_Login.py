@@ -1,6 +1,32 @@
 import streamlit as st
 import pyrebase
 
+def change_colors():
+    style = """
+        <style>
+            body {
+                background-color: #333366;  /* สีพื้นหลัง */
+            }
+            .stText {
+                color: #2c3e50;  /* สีของตัวอักษร */
+            }
+            .stButton>button {
+                background-color: #3498db;  /* สีพื้นหลังของปุ่ม */
+                color: white;  /* สีของตัวอักษรในปุ่ม */
+            }
+            .stButton>button:hover {
+                background-color: #2980b9;  /* สีของปุ่มเมื่อชี้เมาส์ */
+            }
+            footer {
+                visibility: hidden;  /* ซ่อนฟุตเตอร์ */
+            }
+            #MainMenu {
+                visibility: hidden;  /* ซ่อนเมนูหลัก */
+            }
+        </style>
+    """
+    st.markdown(style, unsafe_allow_html=True)
+
 
 # Firebase config
 firebaseConfig = {
@@ -22,6 +48,7 @@ allowed_email = "admin@adminbydorm.com"
 allowed_password = "admin1234"
 
 def login():
+    change_colors()
     st.title("Login")
 
     if "login_status" not in st.session_state:
