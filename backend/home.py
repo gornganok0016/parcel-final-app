@@ -4,18 +4,17 @@ import streamlit as st
 if "current_page" not in st.session_state:
     st.session_state.current_page = "login"
 
-# ซ่อน sidebar ด้วย CSS สำหรับหน้า login
 st.set_page_config(initial_sidebar_state="collapsed")
 
 st.markdown(
     """
-<style>
-    [data-testid="collapsedControl"] {
-        display: none
-    }
-</style>
-""",
-    unsafe_allow_html=True,
+    <style>
+        div[data-testid="collapsedControl"] {
+            visibility: hidden;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
 )
 # ตรวจสอบว่าเป็นหน้า login หรือไม่
 if st.session_state.current_page == "login":
