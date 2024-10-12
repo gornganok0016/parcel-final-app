@@ -10,7 +10,7 @@ def change_colors():
            background-color: #f0f0f0;  /* สีพื้นหลัง */
        }
        .st-emotion-cache-vl2fub{
-            flex-direction: row-reverse;
+            
             background-color: #f0f0f0;
         }    
         .body{
