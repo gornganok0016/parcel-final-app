@@ -14,7 +14,7 @@ def change_colors():
                 color: #2c3e50;  /* สีของตัวอักษร */
             }
             .stButton>button {
-                background-color: #3498db;  /* สีพื้นหลังของปุ่ม */
+                background-color: white;  /*  */
                 color: white;  /* สีของตัวอักษรในปุ่ม */
             }
             .stButton>button:hover {
