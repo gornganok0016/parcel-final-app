@@ -105,16 +105,16 @@ def chat():
     check_login()
     # ฟังก์ชันสำหรับการตรวจสอบคำถามใน CSV
     def check_question_in_csv(question):
-    try:
-        df = pd.read_csv(CSV_FILE)
-        # กรองแถวที่มีชื่อ 'question' และดึงค่าจากคอลัมน์ 'count'
-        row = df[df['name'] == question]
-        if not row.empty:
-            return row['count'].values[0]  # ดึงค่า count จากแถวที่เจอ
-        return None  # คืนค่า None ถ้าไม่พบชื่อ
-    except Exception as e:
-        st.error(f"เกิดข้อผิดพลาดในการอ่านไฟล์ CSV: {e}")
-        return None  # คืนค่า None ถ้าเกิดข้อผิดพลาด
+        try:
+            df = pd.read_csv(CSV_FILE)
+            # กรองแถวที่มีชื่อ 'question' และดึงค่าจากคอลัมน์ 'count'
+            row = df[df['name'] == question]
+            if not row.empty:
+                return row['count'].values[0]  # ดึงค่า count จากแถวที่เจอ
+            return None  # คืนค่า None ถ้าไม่พบชื่อ
+        except Exception as e:
+            st.error(f"เกิดข้อผิดพลาดในการอ่านไฟล์ CSV: {e}")
+            return None  # คืนค่า None ถ้าเกิดข้อผิดพลาด
     
 # ฟังก์ชันที่จัดการคำถาม
 def handle_chat(question):
