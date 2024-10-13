@@ -104,24 +104,31 @@ def chat():
     change_colors()
     check_login()
     # ฟังก์ชันสำหรับการตรวจสอบคำถามใน CSV
-    def check_question_in_csv(question):
-        try:
-            df = pd.read_csv(CSV_FILE)
-            count = (df['name'] == question).sum()  # นับจำนวนที่เจอชื่อในคอลัมน์ 'name'
-            return count
-        except Exception as e:
-            st.error(f"เกิดข้อผิดพลาดในการอ่านไฟล์ CSV: {e}")
-            return 0  # คืนค่า 0 ถ้าเกิดข้อผิดพลาด
-    
+    def check_question_in_json(question):
+    try:
+        # เปิดและอ่านข้อมูล JSON
+        with open('data.json', 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        # ค้นหาชื่อในข้อมูล JSON
+        for item in data:
+            if item['name'] == question:
+                return item['count']  # คืนค่า count ที่พบ
+        
+        return None  # คืนค่า None ถ้าไม่พบชื่อ
+    except Exception as e:
+        st.error(f"เกิดข้อผิดพลาดในการอ่านไฟล์ JSON: {e}")
+        return None  # คืนค่า None ถ้าเกิดข้อผิดพลาด
+
 # ฟังก์ชันที่จัดการคำถาม
-    def handle_chat(question):
-        if question:
-            count = check_question_in_csv(question)
-            if count > 0:
-                return f"✅ พัสดุของ {question} มาถึงแล้วครับ พบทั้งหมด {count} รายการ"
-            else:
-                return f"❌ พัสดุของ {question} ยังไม่มาถึงครับ"
-        return "🚫 กรุณาใส่ชื่อผู้รับพัสดุ"
+def handle_chat(question):
+    if question:
+        count = check_question_in_json(question)
+        if count is not None:
+            return f"✅ พัสดุของ {question} มาถึงแล้วครับ พบทั้งหมด {count} รายการ"
+        else:
+            return f"❌ พัสดุของ {question} ยังไม่มาถึงครับ"
+    return "🚫 กรุณาใส่ชื่อผู้รับพัสดุ"
     
     # ฟังก์ชันสำหรับการส่งข้อความ
     def on_input_change():
