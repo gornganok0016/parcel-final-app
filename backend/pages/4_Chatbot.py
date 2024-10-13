@@ -107,20 +107,17 @@ def chat():
     def check_question_in_csv(question):
         try:
             df = pd.read_csv(CSV_FILE)
-            # กรองแถวที่มีชื่อ 'question' และดึงค่าจากคอลัมน์ 'count'
-            row = df[df['name'] == question]
-            if not row.empty:
-                return row['count'].values[0]  # ดึงค่า count จากแถวที่เจอ
-            return None  # คืนค่า None ถ้าไม่พบชื่อ
+            count = (df['name'] == question).sum()  # นับจำนวนที่เจอชื่อในคอลัมน์ 'name'
+            return count
         except Exception as e:
             st.error(f"เกิดข้อผิดพลาดในการอ่านไฟล์ CSV: {e}")
-            return None  # คืนค่า None ถ้าเกิดข้อผิดพลาด
+            return 0  # คืนค่า 0 ถ้าเกิดข้อผิดพลาด
     
 # ฟังก์ชันที่จัดการคำถาม
     def handle_chat(question):
         if question:
             count = check_question_in_csv(question)
-            if count is not None:
+            if count > 0:
                 return f"✅ พัสดุของ {question} มาถึงแล้วครับ พบทั้งหมด {count} รายการ"
             else:
                 return f"❌ พัสดุของ {question} ยังไม่มาถึงครับ"
