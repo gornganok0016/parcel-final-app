@@ -18,7 +18,7 @@ def change_colors():
             st-emotion-cache-1dp5vir{
                 background-color: #ff5f5f;  /* header */
             }
-            .st-emotion-cache-fqsvsg e1b2p2ww9{
+            .st-emotion-cache-fqsvsg{
                 color: #333366;
             }
             .stText {
